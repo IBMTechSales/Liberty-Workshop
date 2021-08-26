@@ -1,0 +1,9 @@
+
+https://github.com/kpostreich/mono2micro-workshop
+
+
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://kpostreich:S3rvices!@github.com/kpostreich/mono2micro-workshop.git
+git push -u origin master
