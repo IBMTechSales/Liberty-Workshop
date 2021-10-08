@@ -62,27 +62,27 @@ Please follow the [reserve environment instructions](./environments-setup/index.
 
   
 <h3> Agenda Deck </h3>
-[Liberty Workshop Agenda deck](https://ibm.box.com/v/LibertyWorkshop-agenda)
+[Workshop Agenda deck](https://ibm.box.com/v/LibertyWorkshop-agenda)
    
 <h3> Presentations </h3>
 
-[Liberty Presentation material](https://ibm.box.com/v/LibertyWorkshop-presentations)
+[Presentation material](https://ibm.box.com/v/LibertyWorkshop-presentations)
 
 
 
 <h3> Recorded Presentations </h3>
 
-[Liberty Recorded Presentations](https://ibm.box.com/v/LibertyWS-recordedPres)
+[Recorded Presentations](https://ibm.box.com/v/LibertyWS-recordedPres)
 
 
 <h3> Recorded Demonstrations </h3>
 
-[Liberty Recorded Demonstrations](https://ibm.box.com/v/LibertyWS-recordDemos)
+[Recorded Demonstrations](https://ibm.box.com/v/LibertyWS-recordDemos)
    
 
 <h3> Download Hands-on Labs (MS Word and PDF frmats)</h3>
 
-[Liberty Labs](https://ibm.box.com/v/LibertyWorkshop-labs)
+[Hands-on Labs](https://ibm.box.com/v/LibertyWorkshop-labs)
    
 
 
