@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../../../img/favicon.ico">
+  <title>Modern Development experience with Liberty and Java applications - Liberty Workshop</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../../../extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Modern Development experience with Liberty and Java applications";
+    var mkdocs_page_input_path = "lab-guides\\md\\lab4\\Lab04-Liberty-VSCode_v1.4.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../../../.." class="icon icon-home"> Liberty Workshop</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../../../environments-setup/">Reserve lab environment or workshop</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../../../LibertyLabs/">Labs</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../..">Liberty Workshop</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Modern Development experience with Liberty and Java applications</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="modern-development-experience-with-liberty-and-java-applications">Modern Development experience with Liberty and Java applications</h1>
+<h2 id="lab-using-open-liberty-tools-with-vs-code">Lab: Using Open Liberty Tools with VS Code</h2>
+<h2 id="objectives">Objectives</h2>
+<p>In this exercise, you will learn how developers can use Liberty in “dev” mode with VS Code Integrated Development Environment for achieving efficient iterative develop, test, debug cycle when developing Java based applications and microservices.</p>
+<p>At the end of this lab you should be able to:</p>
+<ul>
+<li>
+<p>Experience using the Open Liberty Tools extension available in VS
+    Code to efficiently develop, test, and debug Java cloud native
+    applications.</p>
+</li>
+<li>
+<p>Experience hot reloading of application code and configuration
+    changes using dev mode</p>
+</li>
+</ul>
+<p>You will need an estimated <strong>60 to 90 minutes</strong> to complete this lab.</p>
+<h2 id="lab-requirements">Lab requirements</h2>
+<ul>
+<li>Use the lab environment that we prepared for this lab. It already has the prerequisite software installed and configured.</li>
+</ul>
+<h2 id="introduction-open-liberty-tools-extension-for-vs-code">Introduction – Open Liberty Tools extension for VS Code</h2>
+<p>In a separate lab, you learned how Open Liberty dev mode can be run from a command line while allowing you to edit your code with any text editor or IDE.</p>
+<p><img alt="" src="../images/media/image3.png" /></p>
+<p>In this lab, you will use the “<strong>Open Liberty Tools”</strong> <strong>VS Code
+extension</strong> to start Open Liberty in development mode, make changes to
+your application while the server is up, run tests and view results, and
+even debug the application without leaving the editor.</p>
+<p>Your code is automatically compiled and deployed to your running server,
+making it easy to iterate on your changes.</p>
+<p>The Open Liberty Tools for VS Code contains the following key Features</p>
+<ul>
+<li>
+<p>View <strong>liberty-maven-plugin projects</strong> in the workspace (version 3.1
+    or higher)</p>
+</li>
+<li>
+<p>View <strong>liberty-gradle-plugin projects</strong> in the workspace (version
+    3.0 or higher)</p>
+</li>
+<li>
+<p>Start/Stop Open Liberty Server in dev mode</p>
+</li>
+<li>
+<p>Start Open Liberty Server dev mode with custom parameters</p>
+</li>
+<li>
+<p>Run Unit and Integration tests</p>
+</li>
+<li>
+<p>View unit and integration test reports</p>
+</li>
+</ul>
+<p>The Open Liberty Tools for VS Code has a dependency on the <strong>Tools for
+MicroProfile</strong> VS Code extension to support the development of MicroProfile based microservices.</p>
+<p>The <strong>Tools for MicroProfile</strong> VS Code extension has dependencies on the following:</p>
+<ul>
+<li>
+<p>Java JDK (or JRE) 11 or more recent</p>
+</li>
+<li>
+<p>Language Support for Java by Red Hat VS Code extension.</p>
+</li>
+</ul>
+<h3 id="liberty-maven-plugin"><strong>Liberty Maven Plugin</strong></h3>
+<p>The <strong>Liberty Maven Plugin</strong> provides several goals for managing a
+Liberty server and applications.</p>
+<p>Maven 3.5.0 or later is recommended to use the Liberty Maven Plugin.</p>
+<p>Enabling the Liberty Maven Plugin in your project, simply add the
+following XML Stanza to your <strong>pom.xml</strong> file.</p>
+<p><img alt="" src="../images/media/image4.png" /></p>
+<p>For detailed infromation about the Maven goals supported by the Liberty
+Maven Plugin, visit:</p>
+<p><a href="https://github.com/OpenLiberty/ci.maven">https://github.com/OpenLiberty/ci.maven</a></p>
+<h3 id="interacting-with-dev-mode"><strong>Interacting with dev mode</strong></h3>
+<p>Once the <strong>Liberty Maven Plugin</strong> is specified in your <strong>pom.xml</strong> file,
+your project name is then listed under the <strong>Liberty Dev Dashboard</strong> in
+the side panel in VS Code, as illustrated below.</p>
+<p>You can interact with dev mode by right-clicking on your project name
+and selecting one of the commands supported by the Open Liberty Tools
+extension.</p>
+<blockquote>
+<p><img alt="" src="../images/media/image5.png" /></p>
+</blockquote>
+<h3 id="liberty-dev-mode-commands"><strong>Liberty dev mode Commands</strong></h3>
+<p>The following commands can be selected from the drop-down menu after
+right-clicking on your project name in the Liberty Dev Dashboard.</p>
+<p><img alt="" src="../images/media/image6.png" /></p>
+<h2 id="the-lab-environment">The lab environment</h2>
+<p>One (1) Linux VM has been provided for this lab.</p>
+<p><img alt="" src="../images/media/image7a.png" /></p>
+<p>The <strong>“Liberty vPOT … Desktop”</strong> VM has the following software   available:</p>
+<ul>
+<li>
+<p>Application Project with Liberty</p>
+</li>
+<li>
+<p>Maven 3.6.0</p>
+</li>
+</ul>
+<p>The login credentials for the <strong>Liberty vPOT … Desktop”</strong> VM are:</p>
+<pre><code>User ID: **ibmdemo**
+
+Password: **passw0rd (That is a numeric zero in passw0rd)**
+</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../images/media/image8.png?cropResize=100,100" /></td>
+<td align="left"><p><strong>IMPORTANT:</strong></p><p>Using the lab environment provided, all the required VS code extensions and dependencies have been installed for you.</p><p>This allows you to focus on the value of using the capabilities of the tools for fast, efficient inner-loop development, test, debug, of Java based applications and Microservices using Open Liberty in dev mode.</p></p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="login-to-the-liberty-vpot-desktop-vm-and-get-started"><strong>Login to the "Liberty vPOT … Desktop" VM and Get Started</strong></h3>
+<ol>
+<li>
+<p>If the VM is <strong><span class="underline">not</span></strong> already started, start it by clicking the <strong>Play</strong> button.</p>
+<p><img alt="" src="../images/media/image9a.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>After the VM is started, click the <strong>“Liberty vPOT … Desktop”</strong> VM
+    icon to access it.</p>
+<p><img alt="" src="../images/media/image10a.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Login with <strong>ibmdemo</strong> ID.</p>
+<p>a.  Click on the “<strong>ibmdemo</strong>” icon on the Ubuntu screen.</p>
+<p><img alt="" src="../images/media/image11.png" /></p>
+<p>b. When prompted for the password for “ibmdemo” user, enter
+“<strong>passw0rd</strong>” as the password:</p>
+<p>Password: <strong>passw0rd</strong> (lowercase with a zero instead of the o)</p>
+<p><img alt="" src="../images/media/image12.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Resize the Skytap environment window for a larger viewing area while doing the lab.</p>
+<p>From the Skytap menu bar, click on the “<strong>Fit to Size</strong>”
+<img alt="" src="../images/media/image13.png" /> icon. This will enlarge the
+viewing area to fit the size of your browser window.</p>
+<p><img alt="" src="../images/media/image14.png" /></p>
+</li>
+</ol>
+<h3 id="if-at-aytime-during-the-lab-you-ar-asked-to-install-updates-click-cancel">If, at aytime during the lab, you ar asked to install updates, click CANCEL!</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../images/media/image8.png?cropResize=100,100" /></td>
+<td align="left"><p><strong>Important:</strong> <p><strong>Click CANCEL</strong>…. If, at any time during the lab, you get a pop-up asking to install updated software onto the Ubuntu VM.</p> <p>The one we experience is an update available for VS Code.</p><p><strong>CLICK CANCEL!</strong></p><p><img alt="" src="./images/media/image15 .png?cropResize=100,100" /></p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="getting-started-with-open-liberty-tools-in-vs-code">Getting Started with Open Liberty Tools in VS Code</h2>
+<p><strong>Liberty Dev mode</strong> allows you, as the developer, to focus on your
+code. When Open Liberty is running in dev mode, your code is
+automatically compiled and deployed to the running server, making it
+easy to iterate on your changes.</p>
+<p>In this lab, as a developer, you will experience using the <strong>Open
+Liberty Tools</strong> extension in <strong>VS Code</strong> to work with your code, run
+tests on demand, so that you can get immediate feedback on your changes.</p>
+<p>You will also work with integrated debugging tools and attach a Java
+debugger to debug your running application.</p>
+<p>From a developer perspective, this is a huge gain in efficiency, as all
+these iterative inner-loop development activities occur without ever
+leaving the integrated development environment (IDE).</p>
+<h3 id="review-the-vs-code-extensions-and-projects-pomxm-file-used-for-this-project"><strong>Review the VS Code extensions and projects pom.xm file used for this project</strong></h3>
+<p>The sample application used in this lab is configured to be built with
+Maven. Every Maven-configured project contains a pom.xml file, which
+defines the project configuration, dependencies, plug-ins, and so on.</p>
+<p>Your pom.xml file is in the root directory of the project and is
+configured to include the <strong>liberty-maven-plugin</strong>, which allows you to
+install applications into Open Liberty and manage the server instances.</p>
+<p>To begin, navigate to the project directory and review the IDE
+extensions and pom.xml file that is used for the “<strong>system”</strong>
+microservice that is provided in the lab.</p>
+<p>First, add the project folder to a VS Code Workspace</p>
+<ol>
+<li>
+<p><strong>Close</strong> all <strong>Terminal</strong> windows and <strong>Brower</strong> Tabs used in any previous lab.</p>
+<p><br/></p>
+</li>
+<li>
+<p>Navigate to the project directory and launch VS Code from the <strong>start</strong>” folder of the project.</p>
+<p>a.  Open a terminal window and change to the following directory:</p>
+<pre><code>cd /home/ibmdemo/Student/labs/devmode/guide-getting-started/start
+</code></pre>
+<p><br/></p>
+</li>
+<li>
+<p>Launch VS Code using the current directory as the root folder for
+    the workspace</p>
+<pre><code>code .
+</code></pre>
+<p>When the VS Code UI launches, the Explorer view is shown. The “START” folder contains the source code for the project.</p>
+<p><img alt="" src="../images/media/image16.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Review the installed extensions in VS Code that are used for this lab.</p>
+<p>a.  Click on the <strong>Extensions</strong> icon in the left navigation bar in
+    VS Code.</p>
+<p><img alt="" src="../images/media/image17.png" /></p>
+<p>b.  Expand the “INSTALLED” extensions section to list the extensions that are currently installed in this environment. The notable extensions used in this lab are:</p>
+<ul>
+<li>Open Liberty Tools</li>
+<li>Tools for MicroProfile</li>
+<li>Language Support for Java</li>
+<li>Debugger for Java</li>
+</ul>
+<p><br/></p>
+<p>c.  Click on the “<strong>open Liberty Tools</strong>” extension to view its details.</p>
+<p>d.  Notice the list of commands that are supported by the Open
+    Liberty Tools extension.</p>
+<p><img alt="" src="../images/media/image18.png" /></p>
+<p>e.  Scroll down to the “<strong>Requirements</strong>” section of the Open
+    Liberty Tools details page.</p>
+<p>Notice the requirement for “Tools for MicroProfile” to support development of Microservices that use MicroProfile APIs with   Open Liberty.</p>
+<p><img alt="" src="../images/media/image19.png" /></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../images/media/image8.png?cropResize=100,100" /></td>
+<td align="left"><p><strong>Information:</strong></p><p>The <strong>Tools for MicroProfile</strong> extension requires the components to be installed in the environment:</p><p><img src="./images/media/image20.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<p>f.  <strong>Close</strong> the Open Liberty Tools Extension details page.</p>
+<p><br/></p>
+</li>
+<li>
+<p>Review the <strong>pom.xml</strong> file used to configure and build the "system” microservice.</p>
+<p>a.  Click on the <strong>Explorer</strong> icon <img alt="" src="../images/media/image21.png" /> located on the left navigation bar in VS Code.</p>
+<p>b.  Expand the <strong>START</strong> folder if it is not already expanded</p>
+<p><img alt="" src="../images/media/image22.png" /></p>
+<p>c.  Click on the <strong>pom.xml</strong> file to open it in the editor pane</p>
+<p>d.  Close any Pop-up boxes asking if you want to install extensions
+    or switch views.</p>
+<p><strong>Note:</strong> You may see additional pop-ups, just close them, or    ignore them.</p>
+<p><img alt="" src="../images/media/image23.png" /></p>
+<p>e.  Note the binary packaging of the Java application war file that
+    is produced from the Maven Build. The WAR file produced will be
+    named <strong>guide-getting-started</strong> version 1.0-SNAPSHOT.</p>
+<p><img alt="" src="../images/media/image24.png" /></p>
+<p>f.  Default HTTP and HTTPS Ports are defined, and substituted into
+    the server.xml file</p>
+<p><img alt="" src="../images/media/image25.png" /></p>
+<p>g.  The Open Liberty Tools Plugin is enabled, with a supported   version of 3.3.4</p>
+<p><img alt="" src="../images/media/image26.png" /></p>
+<p>h.  Plugin for running Tests is also added to the Maven       configuration, that leverage the testing dependencies also        defined in the pom.xml file.</p>
+<p><img alt="" src="../images/media/image27.png" /></p>
+<p>i.  <strong>Close</strong> the pom.xml file</p>
+<p><br/></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../images/media/image8.png?cropResize=100,100" /></td>
+<td align="left"><p><strong>Information:</strong></p><p><strong>Tip:</strong> Additional information on the liberty-maven-plugin can be found here:</p><p><a href="https://github.com/OpenLiberty/ci.maven">https://github.com/OpenLiberty/ci.maven</a></p></td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+</li>
+</ol>
+<h2 id="using-open-liberty-tools-in-vs-code">Using Open Liberty Tools in VS Code</h2>
+<p>In this section of the lab, you will use the <strong>Open Liberty Tools i</strong>n
+<strong>VS Code</strong> to work with your code and run tests on demand, so that you
+can get immediate feedback on your changes.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../images/media/image8.png?cropResize=100,100" /></td>
+<td align="left"><p><strong>Important:</strong></p><p><strong>For Open Liberty Tools</strong> (LIBERTY DEV DASHBOARD)</p><p>VS Code provides extensions for Java to support the Java language features.</p><p>VS Code for Java supports two modes.</p><ul><li><p>Lightweight mode</p></li><li><p>Standard mode</p></li></ul><p>VS Code has a default configuration called “hybrid mode” where a workspace is opened in Lightweight mode, but as needed, you are prompted to switch to Standard mode.</p><p>The <strong>Tools for MicroProfile</strong> Extension, which is required for the <strong>Open Liberty Tools</strong> extension, requires the Java workspace to be opened in “<strong>STANDARD</strong>” mode. Otherwise the LIBERTY DEV DASHBOARD will not function properly.</p><p><strong>Tip:</strong> In this lab environment, the workspace is already configured to use Standard mode.</p><p>For more details on VS Code for Java is available here: <a href="https://code.visualstudio.com/docs/java/java-project">https://code.visualstudio.com/docs/java/java-project</a></p></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+<p>Use the Liberty Dev Dashboard to <strong>start</strong> the Liberty Server in dev mode</p>
+<p>a.  In VS Code, expand the LIBERTY DEV DASHBOARD section</p>
+<p>b.  Right-mouse click on the <strong>guide-getting-started</strong> Liberty
+    Server</p>
+<p>c.  Select <strong>Start</strong> from the menu to start the server</p>
+<p><img alt="" src="../images/media/image28.png" /></p>
+<p>d.  The Terminal view opens, and you see the server log messages as
+    the server starts. When the following message spear in the     Terminal, the Liberty server is started.</p>
+<p><img alt="" src="../images/media/image29.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Run the system Properties sample application from a web browser</p>
+<p>a.  Open the Firefox Browser from inside of the VM</p>
+<p>b.  Go to <a href="http://localhost:9080">http://localhost:9080</a> to verify the application is     running.</p>
+<p><img alt="" src="../images/media/image30.png" /></p>
+<p><br/></p>
+</li>
+</ol>
+<h3 id="developer-experience-using-open-liberty-tools-in-vs-code"><strong>Developer experience Using Open Liberty Tools in VS Code</strong></h3>
+<p>The System Properties Sample application is up and running in the
+Liberty server.</p>
+<p>Next, as a developer, you want to implement a health check for the
+application.</p>
+<p>The developer experience is frictionless, as all code and configuration
+change the developer introduces, are automatically detected and the
+server and application are dynamically updated in the running server to
+reflect the updated code and configuration.</p>
+<p>Let’s explore a couple of examples of the very efficient developer
+experience by implementing some new capability into our service.</p>
+<p>In this example, you will leverage the <strong>mpHealth-2.2</strong> feature in Open
+Liberty, which implements the MicroProfile mpHealth-2.2 API, to
+implement the new health checks for the application.</p>
+<p>The <strong>mpHealth-2.2</strong> feature provides a <strong>/health</strong> endpoint that
+represents a binary status, either UP or DOWN, of the microservices that
+are installed.</p>
+<p>To learn more about the MicroProfile mpHealth feature, visit:
+<a href="https://www.openliberty.io/docs/21.0.0.4/health-check-microservices.html">https://www.openliberty.io/docs/21.0.0.4/health-check-microservices.html</a></p>
+<ol>
+<li>
+<p>Update the Liberty server configuration file (server.xml) to include the mpHealth-2.2 feature to begin implementing the health checks for the application.</p>
+<p>a.  In the VS Code Explorer view, navigate to <strong>START</strong> -&gt; <strong>src</strong> -&gt; <strong>main</strong> -&gt; <strong>liberty / config</strong></p>
+<p>b.  Click on <strong>server.xml</strong> to open the file in the editor pane</p>
+<p><img alt="" src="../images/media/image31.png" /></p>
+<p>c.  Add the <strong>mpHealth-2.2</strong> feature to the server.xml file using the text below:</p>
+<pre><code>&lt;feature\&gt;mpHealth-2.2\&lt;/feature\&gt;
+</code></pre>
+<p><img alt="" src="../images/media/image32.png" /></p>
+<p><br/></p>
+<p>d.  <strong>Save</strong> and <strong>Close</strong> the server.xml file</p>
+<p>When the server.xml file is saved, the configuration changes are
+detected, and the server is dynamically updated, installing the new
+feature and updating the application in the running server.</p>
+<p><br/></p>
+</li>
+<li>
+<p>View the messages in the <strong>Terminal</strong> view, showing the feature being installed and the application being updated.</p>
+<p><img alt="" src="../images/media/image33.png" /></p>
+<p>Once the changes are saved, and the server is automatically updated,
+the new /<strong>health</strong> endpoint is available.</p>
+<p><br/></p>
+</li>
+<li>
+<p>From the Firefox browser in the VM access the <strong>/health</strong> endpoint to view the health status of the application.</p>
+<pre><code>**http://localhost:9080/health**
+</code></pre>
+<p><img alt="" src="../images/media/image34.png" /></p>
+<p><br/></p>
+<p>Currently, the basic health check provides a simple status indicating if the service is running, but not if it is healthy.</p>
+<p>In the next steps, you will implement a <strong>liveness</strong> check that implements logic that gathers memory and cpu usage information and reports the service DOWN in the health check if the system resources exceed a certain threshold.</p>
+<p>You will also implement a <strong>readiness</strong> check that checks external property configuration in the server.xml file, that is used to place the service in maintenance mode. And if the service is in maintenance mode, the service is marked DOWN from the health check.</p>
+<p><br/></p>
+</li>
+<li>
+<p>Copy an implementation of the <strong>SystemReadinessCheck.java</strong> to the project</p>
+<p>a.  Open a Terminal window <img alt="" src="../images/media/image35.png" /> on      the VM</p>
+<p>b.  Run the following command to copy the <strong>SystemReadinessCheck.java</strong> to the project</p>
+<pre><code>cp /home/ibmdemo/Student/labs/devmode/guide-getting-started/finish/src/main/java/io/openliberty/sample/system/SystemReadinessCheck.java /home/ibmdemo/Student/labs/devmode/guide-getting-started/start/src/main/java/io/openliberty/sample/system/SystemReadinessCheck.java
+</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../images/media/image8.png?cropResize=100,100" /></td>
+<td align="left">&lt;<p><strong>Information:</strong></p><p>For the purposes of the lab, the copy command above copies a fully implemented Readiness check from the “finished” project, into the current working project.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Review the <strong>SystemReadinessCheck.java i</strong>mplementation</p>
+<p>a.  Return to the VS Code Explorer view</p>
+<p>b.  Navigate to <strong>START > main > java / io / openliberty / sample
+    / system</strong></p>
+<p>c.  Click on the <strong>SystemReadinessCheck.java</strong> file to open it in
+    the editor pane</p>
+<p><img alt="" src="../images/media/image36.png" /></p>
+<p>The SystemReadinessCheck simply evaluates the <strong>“inMaintenance</strong>” ConfigProperty, which is implemented via the mpConfig MicroProfile feature, and configured in the Liberty Server’s server.xml file.</p>
+<ul>
+<li>
+<p>If the “inMaintenance” property is set to “<strong>false</strong>” the
+    readiness check sets the Health Status to <strong>UP</strong>.</p>
+</li>
+<li>
+<p>If the inMaintenance property is set to “<strong>true</strong>” the status is
+    set to <strong>DOWN</strong>.</p>
+</li>
+</ul>
+<p><br/></p>
+</li>
+<li>
+<p>From the Firefox Browser in the VM, rerun the <strong>/health</strong> endpoint to view the health status of the application.</p>
+<pre><code>http://localhost:9080/health
+</code></pre>
+<p><img alt="" src="../images/media/image37.png" /></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../images/media/image8.png?cropResize=100,100" /></td>
+<td align="left"><p><strong>Information:</strong></p><p>Did you notice that while implementing the new readiness check code in the application, that you did not have to restart the application or Liberty Server?</p><p>The Open Liberty Tools detected the code changes in the project, and dynamically updated the application in the running server.</p></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Copy an implementation of the <strong>SystemLivenessCheck.java</strong> to the project</p>
+<p>a  Open a Terminal window <img alt="" src="../images/media/image35.png" /> on        the VM</p>
+<p>b.  Run the following command to copy the <strong>SystemLivenessCheck.java</strong> to the project</p>
+<pre><code>cp /home/ibmdemo/Student/labs/devmode/guide-getting-started/finish/src/main/java/io/openliberty/sample/system/SystemLivenessCheck.java /home/ibmdemo/Student/labs/devmode/guide-getting-started/start/src/main/java/io/openliberty/sample/system/SystemLivenessCheck.java
+</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../images/media/image8.png?cropResize=100,100" /></td>
+<td align="left"><p><strong>Information:</strong></p><p>For the purposes of the lab, the copy command above copies a fully implemented Liveness check from the “finished” project, into the current working project.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Review the <strong>SystemLivenessCheck.java i</strong>mplementation</p>
+<p>a.  Return to the VS Code Explorer view</p>
+<p>b.  Navigate to <strong>START</strong> -&gt; <strong>main</strong> -&gt; <strong>java / io / openliberty / sample / system</strong></p>
+<p>c.  Click on the <strong>SystemLivenessCheck.java</strong> file to open it in the
+    editor pane</p>
+<p><img alt="" src="../images/media/image38.png" /></p>
+<p>The SystemLivenessCheck evaluates the <strong>“memory”</strong> and <strong>“cpu”</strong>    resources used.</p>
+<ul>
+<li>
+<p>If the “memory” used is less than 90%, the liveness probe sets
+    the status to UP.</p>
+</li>
+<li>
+<p>If the “memory” used is greater than 90%, the liveness probe
+    sets the status to DOWN.</p>
+</li>
+</ul>
+<p><br/></p>
+</li>
+<li>
+<p>From the Firefox Browser in the VM, rerun the <strong>/health</strong> endpoint to view the health status of the application.</p>
+<pre><code>http://localhost:9080/health
+</code></pre>
+<p><img alt="" src="../images/media/image39.png" /></p>
+<p><strong>Note:</strong> in the case where there are multiple health checks being performed, as in our example, ALL the health checks must have the UP status for the service to be marked UP.</p>
+<p><strong>So, what happens when we change the inMaintenance property to“true”?</strong></p>
+<p>Let’s modify the external configuration to set the service in maintenance mode and see the results of the health checks.</p>
+<p><br/></p>
+</li>
+<li>
+<p>Modify the inMaintenance property in the server.xml file</p>
+<p>a.  Return to the VS Code console and navigate to <strong>START</strong> -&gt; <strong>src</strong> -&gt; <strong>main -&gt; liberty / config</strong></p>
+<p>b.  Click on <strong>server.xml</strong> to open the file in the editor</p>
+<p>c.  Modify the inMaintenance variable value to “<strong>true</strong>” as
+    illustrated below</p>
+<p>d.  <strong>Save</strong> the server.xml file. The server configuration is
+    dynamically updated to reflect the update.</p>
+<p><img alt="" src="../images/media/image40.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>From the Firefox Browser in the VM, rerun the <strong>/health</strong> endpoint to view the health status of the application.</p>
+<pre><code>http://localhost:9080/health
+</code></pre>
+<p><img alt="" src="../images/media/image41.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>In the server.xml file, change the inMaintenance variable back to false”</p>
+<p>a.  <strong>Save</strong> the server.xml file</p>
+<p>b.  <strong>Close</strong> the server.xml editor view</p>
+<p><img alt="" src="../images/media/image42.png" /></p>
+<p><br/> </p>
+</li>
+<li>
+<p>Rerun the <strong>/health</strong> endpoint to verify the service is now marked UP again.</p>
+</li>
+</ol>
+<p><img alt="" src="../images/media/image43.png" /></p>
+<p><br/></p>
+<h3 id="running-tests-using-the-open-liberty-tools-in-vs-code"><strong>Running Tests using the Open Liberty Tools in VS Code</strong></h3>
+<p>In this section of the lab, you will make some simple changes to the
+sample application code and run test cases directly from the VS Code IDE
+using the built-in capabilities in the Open Liberty tools.</p>
+<p>To simulate a breaking change in the application code, you will modify
+the path to the service endpoint from <strong>/properties</strong> to
+<strong>/all-properties</strong>.</p>
+<p>Because the test case attempts to run the system service using the
+<strong>/properties</strong> path, the test case will fail and return an HTTP Code of
+404, rather than the expected response code of 200.</p>
+<p>Since the developer is purposely introducing this change, the test case
+needs to be updated to reflect the new path to the service for the tests
+to pass.</p>
+<ol>
+<li>
+<p>Use the Liberty Dev Dashboard to <strong>Run Tests</strong> against the System Properties Sample service.</p>
+<p>a.  In VS Code, expand the LIBERTY DEV DASHBOARD section</p>
+<p>b.  Right-mouse click on the <strong>guide-getting-started</strong> Liberty
+    Server</p>
+<p>c.  Select <strong>Run Test</strong> from the menu to run the tests</p>
+<p><img alt="" src="../images/media/image44.png" /></p>
+<p>d.  In the Terminal view, you will see the results of the tests. One
+    test was executed, and one test PASSED.</p>
+<p><img alt="" src="../images/media/image45.png" /></p>
+<p><br/></p>
+<p>Next, as a developer on the project, you have been asked to change the code to specify a different path to the “properties” service. Doing so, has an impact on the tests. In the next few steps, you will make the code change, and update the tests to match the NEW expected results.</p>
+<p><br/></p>
+</li>
+<li>
+<p>Open the <strong>sytemResources.java</strong> in VS Code editor</p>
+<p>a.  In VS Code Explorer view, expand <strong>START</strong> -&gt; <strong>src</strong> -&gt; <strong>main -&gt; java / io / openliberty / sample / system</strong></p>
+<p>b.  Click on <strong>SystemResources.java</strong> to open it in the editor</p>
+<p><img alt="" src="../images/media/image46.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Update the <strong>@Path</strong> to the system properties service to specify a different service path</p>
+<p>a.  From the editor, make the following change to the <strong>systemResources.java</strong> file:</p>
+<p><strong>Change the highlighted line:</strong></p>
+<p><img alt="" src="../images/media/image47.png" /></p>
+<p><strong>Updated to read:</strong> @Path("/all-properties")</p>
+<p><img alt="" src="../images/media/image48.png" /></p>
+<p>b.  <strong>SAVE</strong> the file. The Liberty server and application are
+dynamically updated.</p>
+<p>c.  <strong>Close</strong> the editor view for the <strong>SystemResource.java</strong> file</p>
+<p><br/></p>
+</li>
+<li>
+<p>From the Firefox browser, run the service using the NEW endpoint URL</p>
+<p><strong>http://localhost:9080/system/all-properties</strong></p>
+<p><img alt="" src="../images/media/image49.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Use the Liberty Dev Dashboard to <strong>Run Tests</strong> against the System Properties Sample service.</p>
+<p>a.  In VS Code, expand the LIBERTY DEV DASHBOARD section</p>
+<p>b.  Right-mouse click on the <strong>guide-getting-started</strong> Liberty
+    Server</p>
+<p>c.  Select <strong>Run Test</strong> from the menu to start the server</p>
+<p><img alt="" src="../images/media/image44.png" /></p>
+<p>d.  Alternatively, you can run the tests by simply pressing the
+    <strong>ENTER</strong> key in the Terminal window. Give it a try. <strong>The tests
+    now FAIL</strong>.</p>
+<p><img alt="" src="../images/media/image50.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Use the Liberty Dev Dashboard to <strong>View integration test report</strong>.</p>
+<p>a.  In VS Code, expand the LIBERTY DEV DASHBOARD section</p>
+<p>b.  Right-mouse click on the <strong>guide-getting-started</strong> Liberty
+    Server</p>
+<p>c.  Select <strong>View integration test report</strong> from the menu</p>
+<p><img alt="" src="../images/media/image51.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>View the test results details in the “<strong>guide-getting-started Failsafe report</strong>” that is now displayed the editor pane</p>
+<p>a.  Notice that the test case failed</p>
+<p><img alt="" src="../images/media/image52.png" /></p>
+<p>b.  Scroll to the bottom of the report to see the ERROR message that
+    was produced from the failing test.</p>
+<p><img alt="" src="../images/media/image53.png" /></p>
+<p>c.  The issue is obvious. Since we changed the endpoint path, the
+    test case assertion failed because it got a HTTP response code
+    of 404 (Not Found) when attempting to run the service using the
+    original path of /properties.</p>
+<p>d.  <strong>Close</strong> the Failsafe Report in the Editor pane</p>
+<p><strong>NOTE:</strong> In this case, we expected the test case to fail. And as the developer, you must update the test case to match the      expected results based on to your code change.</p>
+<p><br/></p>
+</li>
+<li>
+<p>Modify the test case that is included in the application project&gt; to invoke the updated path to the service.</p>
+<p>a.  From the Explorer view in VS Code, navigate to <strong>START</strong> -&gt; <strong>src</strong> -&gt; <strong>test / java / it /io /openliberty / sample</strong></p>
+<p>b.  Click on <strong>PropertiesEndpointIT.java</strong> to open it in an editor
+    pane</p>
+<p>c.  From the editor, make the following change to the
+    <strong>PropertiesEndpointIT.java</strong> file:</p>
+<p><strong>Change the highlighted line:</strong> “system/properties”</p>
+<p><img alt="" src="../images/media/image54.png" /></p>
+<p><strong>Updated to read:</strong> “system/all-properties”</p>
+<p><img alt="" src="../images/media/image55.png" /></p>
+<p>d.  <strong>SAVE</strong> and <strong>CLOSE</strong> the file. The Liberty server and application are dynamically updated.</p>
+<p><br/></p>
+</li>
+<li>
+<p>Rerun the tests by Pressing the <strong>ENTER</strong> key in the Terminal view. The test PASS.</p>
+<p><img alt="" src="../images/media/image56.png" /></p>
+<p>At this point, you have explored using the Liberty Developer Tools
+to develop code, make server configuration changes, and run test
+cases to get immediate feedback on the updates.</p>
+<p>Using the Open Liberty Tools in VS Code provides an integrated
+development environment where your updates were automatically
+detected and dynamically applied to the running server. This
+provides a rapid inner-loop development cycle for development and
+testing.</p>
+<p>In the next section of the lab, you will explore how simple it is to
+integrate application debugging in the same development environment
+without having to restart the Liberty server.</p>
+<p><br/></p>
+</li>
+</ol>
+<h2 id="optional-integrated-debugging-using-the-open-liberty-tools-in-vs-code">OPTIONAL: Integrated debugging using the Open Liberty Tools in VS Code</h2>
+<p>Application debugging is an important part of application development.
+Developers expect to easily and quickly iterate through <strong>dev – test –
+debug</strong> without having to leave the development environment or having to
+restart servers and applications for debugging.</p>
+<p>In this section of the lab, you will explore how easy it is for
+developers to debug their Java application using the integrated
+development environment and Open Liberty.</p>
+<p><strong><span class="underline">Here are the basics steps for
+debugging</span></strong></p>
+<ul>
+<li>
+<p>Set a breakpoint in the source code</p>
+</li>
+<li>
+<p>Add a “Java Attach” in the launch configuration and set the debug
+    port</p>
+</li>
+<li>
+<p>Go to Debug view and select the “Attach” configuration</p>
+</li>
+<li>
+<p>Click the Start debugging icon</p>
+</li>
+<li>
+<p>Run the application in the Browser</p>
+</li>
+<li>
+<p>The application stops at the breakpoint</p>
+</li>
+<li>
+<p>Step through the app in debug mode to explore the variables and code
+    to resolve issues</p>
+</li>
+</ul>
+<p>One of the key features of Visual Studio Code is its great debugging
+    support.</p>
+<p>In this section of the lab, you will use VS Code debigger to debug   the Java application running on Liberty server.</p>
+<p><img alt="" src="../images/media/image57.png" /></p>
+<p>In this scenario, you will set a breakpoint and debug the SystemLivenessCheck.java code that is executed when running the /health endpoint in the application.</p>
+<ol>
+<li>
+<p>Open the <strong>SystemLivenessCheck.java</strong> in VS Code editor</p>
+<p>a.  In VS Code Explorer view, expand <strong>START</strong> -&gt; <strong>src</strong> -&gt; <strong>main</strong> -&gt; <strong>java / io / openliberty / sample / system</strong></p>
+<p>b.  Click on <strong>SystemLivenessCheck.java</strong> to open it in the editor</p>
+<p><img alt="" src="../images/media/image58.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Set a breakpoint in the code where the <strong>MemoryMaxBean</strong> variable is set</p>
+<p>a.  Locate the line with the text:</p>
+<p><strong>MemoryMXBean memBean = ManagementFactory.getMemoryMXBean();</strong></p>
+<p>b.  <strong>Left-mouse click</strong> on the left side of the Line Number (31 in
+    the screen shot) to set a breakpoint. A red dot will appear, indicating the breakpoint is set</p>
+<p><img alt="" src="../images/media/image59.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Create a new <strong>Java Attach configuration</strong> and specify the debug port <strong>7777</strong></p>
+<p>a.  Select <strong>Run &gt; Add Configuration…</strong> from the main menu in VS
+    Code</p>
+<p><img alt="" src="../images/media/image60.png" /></p>
+<p>A new file named <strong>launch.json</strong> file was created in the <strong>.vscode</strong> directory. You can see the new file in the explorer       view.</p>
+<p>b.  In the <strong>launch.json</strong> file that opened in the Editor view,
+    click on the “<strong>Add Configuration</strong>” button located on the lower
+    right corner of the screen.</p>
+<p><img alt="" src="../images/media/image61.png" /></p>
+<p>c.  Select <strong>Java: Attach</strong> from the menu.</p>
+<p><img alt="" src="../images/media/image62.png" /></p>
+<p>d.  A new configuration is added to the launch.json file, that includes a “<strong>port”</strong> parameter to attach the debugger for Open    Liberty.</p>
+<p><strong>Note:</strong> Open Liberty is configured to use debug port 7777 by
+    default.</p>
+<p><img alt="" src="../images/media/image63.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Change the “port” parameter to 7777</p>
+<p>a.  From the editor, make the following change to the <strong>lauch.json</strong>
+    file:</p>
+<p><strong>Change the highlighted line:</strong> "port": "<debug port of the debugger>"</p>
+<p><img alt="" src="../images/media/image64.png" /></p>
+<p><strong>Updated to read:</strong> “port”: 7777</p>
+<p><strong>Note”</strong> Be sure to REMOVE the double quotes around 7777, as illustrated below.</p>
+<p><img alt="" src="../images/media/image65.png" /></p>
+<p>b.  <strong>SAVE and CLOSE</strong> the file. The Liberty server and application are dynamically updated.</p>
+<p><br/></p>
+</li>
+<li>
+<p>Now, attach the new Java Attach configuration</p>
+<p>a.  Switch to the <strong>Debug</strong> perspective in VS Code, by selecting the
+<strong>Debug Icon</strong> on the left side navigation menu</p>
+<p><img alt="" src="../images/media/image66.png" /></p>
+<p>b.  Using the launch Drop-down menu in the Debug perspective, set the <strong>Launch action</strong> to the “<strong>Attach</strong>” configuration that you
+created.</p>
+<p><img alt="" src="../images/media/image67.png" /></p>
+<p>c.  The “Attach” configuration is now selected. You are ready to debug.</p>
+<p><img alt="" src="../images/media/image68.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Click on the <strong>Start</strong> Icon to start the debugger.</p>
+<p><img alt="" src="../images/media/image69.png" /></p>
+<p>The debugger is now attached, and the CALL STACK and BREAKPOINTS are
+displayed in the Debug perspective, as illustrated below:</p>
+<p><img alt="" src="../images/media/image70.png" /></p>
+<p><br?></p>
+</li>
+<li>
+<p>From the Firefox Browser in the VM, run the <strong>/health</strong> endpoint to view the health status of the application. The application will stop at the breakpoint in the SystemLivenessCheck.java code.</p>
+<pre><code>http://localhost:9080/health
+</code></pre>
+<p>In VS Code’s Debugger perspective, the application stopped at the breakpoint you set in the SystemLivenessCheck.java, as illustrated below.</p>
+<p><img alt="" src="../images/media/image71.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Now you can use the “step Over”, “Step In” “Step Out”,” Run” or “Disconnect” actions.</p>
+<p>a.  Click the “<strong>Step Over</strong>” to execute the existing line of code and step to the next line of code in the application.</p>
+<p><img alt="" src="../images/media/image72.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>When you are finished stepping through the debugger and exploring the local variables, click the <strong>Disconnect</strong>” icon to disconnect the debugger</p>
+<p><img alt="" src="../images/media/image73.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Use the Liberty Dev Dashboard to <strong>STOP</strong> the Liberty Server in dev mode</p>
+<p>a.  In VS Code, expand the LIBERTY DEV DASHBOARD section</p>
+<p>b.  Right-mouse click on the <strong>guide-getting-started</strong> Liberty
+    Server</p>
+<p>c.  Select <strong>Stop</strong> from the menu to stop the server</p>
+<p><img alt="" src="../images/media/image74.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p><strong>Exit</strong> the VS Code UI</p>
+<p>a.  Select <strong>File > Exit</strong> from the main menu in VS Code to Exit  the UI</p>
+<p><br/></p>
+</li>
+<li>
+<p><strong>Close</strong> all opened <strong>Terminal</strong> Windows and <strong>Browser</strong> tabs</p>
+</li>
+</ol>
+<p>Congratulations! You have successfully used the <strong>Liberty Dev VS Code
+extension</strong> to start Open Liberty in development mode, make changes to
+your application and Liberty server configuration while the server is
+up, run tests and view results, and even debug the application without
+leaving the editor.</p>
+<p>As you explored the fast and efficient inner-loop development experience
+using the Open Liberty tools and VS Code IDE, your code was
+automatically compiled and deployed to your running server, making it
+easy to iterate on your changes.</p>
+<p><strong>===== END OF LAB =====</strong></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../../../..';</script>
+    <script src="../../../../js/theme.js" defer></script>
+      <script src="../../../../search/main.js" defer></script>
+
+</body>
+</html>
