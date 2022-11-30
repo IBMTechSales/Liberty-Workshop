@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>Liberty: Getting Started - Liberty Workshop</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../../extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Liberty: Getting Started";
+    var mkdocs_page_input_path = "lab-guides\\md\\1154\\README.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> Liberty Workshop</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../../environments-setup/">Reserve lab environment or workshop</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../../LibertyLabs/">Labs</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">Liberty Workshop</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Liberty: Getting Started</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="liberty-getting-started">Liberty: Getting Started</h1>
+<h2 id="setup-the-liberty-environment">Setup the Liberty environment</h2>
+<p>In the initial setup of Liberty, you will install Liberty using the
+<strong>Archive</strong> method. Then, you will create your first Liberty server,
+start it, and deploy a simple Java EE application to the server to test
+the Liberty server runtime.</p>
+<p>You will use am Ubuntu Linux VM that has been prepared for the Liberty
+labs and includes the following:</p>
+<ul>
+<li>
+<p>The <strong>Liberty</strong> package has been downloaded to
+    <strong>/home/ibmdemo/Downloads</strong> directory</p>
+</li>
+<li>
+<p>The <strong>IBM JDK</strong> has been downloaded to <strong>/home/ibmdemo/Downloads</strong>
+    directory</p>
+</li>
+<li>
+<p>The required Operating System libraries have been installed.</p>
+</li>
+</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td><img src="./images/media/image2.png" style="width:0.90417in;height:0.60417in" alt="sign-info" /></td>
+<td><p><strong>Information:</strong></p>
+<p>The Liberty image contains WebSphere Developer Tools for Eclipse.</p>
+<p>The VMWare image contains the “wdt” folder that contains the WebSphere Developer Tools that is used for the lab.</p></td>
+</tr>
+</tbody>
+</table>
+
+<p><img alt="" src="images/media/image3.png" /></p>
+<p><strong>TIP:</strong> To reduce typing or copy &amp; past of commands, you can find the
+related code snippets or commands in the VMWare image in the directory:</p>
+<pre><code>/home/ibmdemo/Student/lab-files/CodeSnippets/Bootcamp_Lab1_setup_CodeSnippets.txt
+</code></pre>
+<p><img alt="" src="images/media/image4.png" /></p>
+<p><br/></p>
+<h2 id="accessing-the-lab-environment">Accessing the lab environment</h2>
+<p>If you are doing this lab as part of an instructor led workshop (virtual or face to face), an environment has already been provisioned for you. The instructor will provide the details for accessing the lab environment.</p>
+<p>Otherwise, you will need to reserve an environment for the lab. You can obtain one here. Follow the on-screen instructions for the “<strong>Reserve now</strong>” option.</p>
+<p><a href="https://techzone.ibm.com/my/reservations/create/60da2c20e2cb7a001f656575">https://techzone.ibm.com/my/reservations/create/60da2c20e2cb7a001f656575</a></p>
+<p>The lab environment contains one (1) Linux VM, named <strong>Workstation</strong>.</p>
+<p><img alt="" src="images/media/workstation.png" /></p>
+<p>The Ubuntu Linux <strong>Workstation</strong> VM has the following software installed for the lab:</p>
+<ul>
+<li>Application Project with Liberty</li>
+<li>Maven 3.6.0 </li>
+</ul>
+<p><br/></p>
+<ol>
+<li>
+<p>Access the lab environment from your web browser. </p>
+<p>A Published Service is configured to provide access to the <strong>Workstation</strong> VM through the noVNC interface for the lab environment.</p>
+<p>a.  When the environment is provisioned, right-mouse click on the <strong>Published Service</strong> link and open the URL in a new private or incognito browser window, as described below:  </p>
+<ul>
+<li>If using <strong>Google Chrome</strong> browser, select <strong>"Open link in incognito window"</strong> from the context menu. </li>
+</ul>
+<p><img alt="" src="images/media/chrome-incognito.png" /></p>
+<ul>
+<li>If using <strong>Firefox</strong> browser, select <strong>"Open link in new private window"</strong> from the context menu. </li>
+</ul>
+<p><img alt="" src="images/media/firefox-private.png" /></p>
+<p>b. Click on the <strong>"vnc.html"</strong> link to open the lab environment through the <strong>noVNC</strong> interface. </p>
+<p><img alt="" src="images/media/vnc-link.png" /></p>
+<p>c. Click the <strong>Connect</strong> button </p>
+<p><img alt="" src="images/media/vnc-connect.png" /></p>
+<p>d. Enter the password as:  <strong>passw0rd</strong>. Then click the <strong>Send Credentials</strong> button to access the lab environment. </p>
+<blockquote>
+<p>Note: That is a numeric zero in passw0rd  </p>
+</blockquote>
+<p><img alt="" src="images/media/vnc-password.png" /></p>
+</li>
+<li>
+<p>Login with <strong>ibmdemo</strong> ID.</p>
+<p>a.  Click on the “<strong>ibmdemo</strong>” icon on the Ubuntu screen.</p>
+<p><img alt="" src="images/media/image8.png" /></p>
+<p>b. When prompted for the password for “<strong>ibmdemo</strong>” user, enter
+“<strong>passw0rd</strong>” as the password:</p>
+<p>Password: <strong>passw0rd</strong> (lowercase with a zero instead of the o)</p>
+<p><img alt="" src="images/media/image9.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Once you access the <strong>Student VM</strong> through the published service, you will see the Desktop, which contains all the programs that you will be using (browsers, terminal, etc.)</p>
+</li>
+</ol>
+<p><br/></p>
+<h2 id="tips-for-working-the-in-lab-environment">Tips for working the in lab environment</h2>
+<ol>
+<li>
+<p>You can use your Browsers <strong>zoom in</strong> and <strong>zoom out</strong> options to resize the virtual desktop to fit your screen.</p>
+<p>The examples below are using Firefox and Chrome browsers. </p>
+<ul>
+<li>Firefox example: </li>
+</ul>
+<p><img alt="fit to window" src="images/media/zoom.png" /></p>
+<ul>
+<li>Chrome example: </li>
+</ul>
+<p><img alt="fit to window" src="images/media/zoom-chrome.png" /></p>
+</li>
+<li>
+<p>You can copy / paste text from the lab guide into the lab environment using the clipboard in the noVNC viewer. </p>
+<p>a. Copy the text from the lab guide that you want to paste into the lab environment</p>
+<p>b. Click the <strong>Clipboard</strong> icon and <strong>paste</strong> the text into the noVNC clipboard</p>
+<p><img alt="fit to window" src="images/media/paste.png" /></p>
+<p>c. Paste the tect into the VM, such as to a terminal window, browser window, etc. </p>
+<p>d. Click on the <strong>clipboard</strong> icon agian to close the clipboard</p>
+<blockquote>
+<p><strong>NOTE:</strong> Sometimes pasting into a Terminal window in the VM does not work consistently. In this case you might try again, or paste the text into a <strong>Text Editor</strong> in the VM, and then paste it into the Terminal window in the VM. </p>
+</blockquote>
+</li>
+<li>
+<p>An alternative to using the noVNC Copy / Paste option, you may considr openeing the lab guide in a web browser inside of the VM. Using this method, you can easily copy / paste text from the lab guide wihout having to use the noVNC clipboard. </p>
+<p><br></p>
+</li>
+</ol>
+<table>
+<tbody>
+<tr class="odd">
+<td><img src="./images/media/image2.png" style="width:0.90417in;height:0.60417in" alt="sign-info" /></td>
+<td><p><strong>Important:</strong></p>
+<p><strong>Click CANCEL</strong>…. If, at any time during the lab, you get a pop-up asking to install updated software onto the Ubuntu VM.</p>
+<p>The one we experience is an update available for VS Code.</p>
+<p><strong>CLICK CANCEL!</strong></p>
+<p><img src="./images/media/image12.png" style="width:5.31184in;height:3.52039in" /></p></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="extract-the-extended-liberty-vpot-image">Extract the extended Liberty vPoT image</h2>
+<p>Locate the script on the desktop and double-click on it to <strong>run in
+terminal</strong></p>
+<p><img alt="" src="images/media/image13.png" /></p>
+<p><img alt="" src="images/media/image14.png" /></p>
+<p>Wait until the image has been extracted. Once completed, press <strong>Enter</strong>
+to continue:</p>
+<p><img alt="" src="images/media/image15.png" /></p>
+<p>The Liberty vPOT contents are extracted to
+<strong>/home/ibmdemo/Student/WLP_21.0.0.3</strong>, and is referred as
+{<strong>LAB_HOME</strong>} throughout the labs.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><img src="./images/media/image2.png" style="width:0.90417in;height:0.60417in" alt="sign-info" /></td>
+<td><p><strong>Information:</strong></p>
+<p>If you need to reset the image at some point of time, make sure that all programs are stopped and run the script again.</p>
+<p>This will clean-up the directory <strong>/home/ibmdemo/Student/WLP_*</strong> and extract the image again.</p></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="install-websphere-liberty">Install WebSphere Liberty</h2>
+<p>For your convenience, Liberty has already been installed into the
+directory <strong>/home/ibmdemo/Student/WLP_21.0.0.3/wlp</strong>.</p>
+<p>However, in this section, you will install a new instance of Liberty to
+learn how easy and fast it is to install Liberty, using the <strong>archive installation</strong> method.</p>
+<p>Liberty can be installed via IBM Installation Manager, but the more
+convenient way is to use an Archive Install.</p>
+<p>The related packages can be downloaded from Passport Advantage, but the
+most recent versions are only available on the IBM Support pages. There
+are separate packages available for the Liberty edition and for the IBM
+Java SDK. Liberty for Developers downloads and documentation is located
+here:</p>
+<p><a href="https://www.ibm.com/support/pages/node/6250961#asset/">https://www.ibm.com/support/pages/node/6250961#asset/</a></p>
+<p>In this section we will use these two packages, which are <strong>Java JDK
+v8</strong> and <strong>Liberty ND</strong> edition.</p>
+<ul>
+<li>
+<p>IBM Java SDK for WebSphere: ibm-java-sdk-8.0-6.26-linux-x86_64.tgz</p>
+</li>
+<li>
+<p>IBM WebSphere Liberty ND Archive Install: wlp-nd-all-21.0.0.3.jar</p>
+</li>
+</ul>
+<p>To install Liberty using the Archive method, perform the following
+steps:</p>
+<ol>
+<li>
+<p>Open a Terminal window by clicking on the appropriate icon:</p>
+<p><img alt="" src="images/media/image16.png" /></p>
+</li>
+<li>
+<p>Navigate to the “Student” directory:</p>
+<pre><code>cd /home/ibmdemo/Student
+</code></pre>
+</li>
+<li>
+<p>Create a temporary directory and navigate to that directory</p>
+<pre><code>mkdir temp
+
+cd temp
+</code></pre>
+</li>
+<li>
+<p>Extract the IBM Java SDK to the ~/Student/temp/directory. This will
+    extract the JDK to the directory <strong>ibm-java-x86_64-80</strong></p>
+<pre><code>tar -zxvf '/home/ibmdemo/Downloads/ibm-java-sdk-8.0-6.26-linux-x86_64.tgz'
+</code></pre>
+</li>
+<li>
+<p>Extract the WebSphere Liberty ND package to the <strong>~/Student/temp</strong> directory.</p>
+<p>The Liberty Archive is a Java “jar” file. To extract the archive, use
+ the java -jar command.</p>
+<pre><code>ibm-java-x86_64-80/bin/java -jar '/home/ibmdemo/Downloads/wlp-nd-all-21.0.0.3.jar' --acceptLicense .
+</code></pre>
+<ul>
+<li>
+<p>The <strong>--acceptLicense</strong> option is included to automatically accept
+the license, without having additional prompts.</p>
+</li>
+<li>
+<p>The <strong>dot</strong> at the end of the command means to extract the archive
+to the current directory.</p>
+</li>
+<li>
+<p>The Liberty archive is extracted, and Liberty is now installed in
+the <strong>wlp</strong> subdirectory.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><br/></p>
+<ol>
+<li>
+<p>List the two directories that were created via the extraction of the
+    Java JDK and Liberty ND</p>
+<pre><code>ls
+</code></pre>
+<p><img alt="" src="images/media/image17.png" /></p>
+<ul>
+<li>
+<p>Liberty is now installed the <strong>wlp</strong> directory.</p>
+</li>
+<li>
+<p>IBK JDK is now installed in the <strong>ibm-java-x86_64-80</strong> directory</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Set the <strong>JAVA_HOME</strong> path to tell Liberty to use the Java SDK that
+    you just extracted</p>
+<pre><code>export JAVA_HOME=~/Student/temp/ibm-java-x86_64-80/jre/
+</code></pre>
+</li>
+<li>
+<p>Display the product information for Liberty</p>
+<p>a.  Display the Liberty product edition and version</p>
+<pre><code>wlp/bin/productInfo version
+</code></pre>
+<p>The output should indicate the Liberty Edition is <strong>ND</strong>, and the
+ product version should match the Liberty Archive that is used in the
+ lab.</p>
+<p>Liberty fixpacks are delivered on a four-week continues delivery
+ interval.</p>
+<ul>
+<li>
+<p>The Version indicates the YEAR and MONTH of the Liberty fixpack
+installed.</p>
+</li>
+<li>
+<p>21.0.0.3 is the 3<sup>rd</sup> fixpack in 2021</p>
+</li>
+</ul>
+<p><img alt="" src="images/media/image18.png" /></p>
+<p>b. Display the list of installed features</p>
+<pre><code>wlp/bin/productInfo featureInfo
+</code></pre>
+<p>The output should look similar to the illustration below, which
+ includes all of the Liberty ND features. The screen shot is only a
+ partial list of installed features of Liberty ND.  </p>
+<p><img alt="" src="images/media/image19.png" /></p>
+<p>c.  <strong>You have just installed Liberty in the temp directory using the
+archive install method</strong>.</p>
+<p>It’s that simple to install Liberty. Creating and working with a new
+ Liberty server is equally simple. You will do that in the next
+ sections of the lab.</p>
+<p>There are more than 200 features installed via the Liberty ND package.
+  By default, you would start with a much more light-weight package. If
+ you are interested to see which features belong to which Liberty
+ Edition, please look here:</p>
+<p><a href="https://www.ibm.com/docs/en/was-liberty/nd?topic=management-liberty-features">https://www.ibm.com/docs/en/was-liberty/nd?topic=management-liberty-features</a></p>
+</li>
+</ol>
+<table>
+<tbody>
+<tr class="odd">
+<td><img src="./images/media/image2.png" style="width:0.90417in;height:0.60417in" alt="sign-info" /></td>
+<td><p><strong>Information:</strong></p>
+<p>As mentioned before, Liberty has already been installed into the directory <strong>/home/ibmdemo/Student/WLP_21.0.0.3*/wlp.</strong></p>
+<p>We will <strong>NOT</strong> use the Liberty installed in the <strong>temp</strong> <strong>directory</strong> in the next sections of the lab. You can ignore the temp directory.</p></td>
+</tr>
+</tbody>
+</table>
+
+<ol>
+<li><strong>Close</strong> the Terminal window.</li>
+</ol>
+<h2 id="information-only-open-liberty">INFORMATION ONLY – Open Liberty</h2>
+<p>How does Open Liberty fit into the Liberty family of editions?</p>
+<p>Open Liberty is the lightweight open source server runtime that can be
+ideal for building Java microservices and cloud-native apps.</p>
+<p><img alt="" src="images/media/image20.png" /></p>
+<p>Open Liberty provides a proven open source foundation for the WebSphere
+Liberty portfolio. All of the editions of Liberty are built on top of
+the same code base from Open Liberty.</p>
+<ul>
+<li>
+<p>Liberty Core offers supported Web Profile</p>
+</li>
+<li>
+<p>Liberty Base offers supported Full Profile</p>
+</li>
+<li>
+<p>Liberty ND offers supported Full Profile and clustering / workload
+    management capabilities</p>
+</li>
+</ul>
+<p>All 3 commercial editions provide additional capabilities:</p>
+<ul>
+<li>
+<p>Programming model extensions</p>
+</li>
+<li>
+<p>Production quality of service extensions</p>
+</li>
+<li>
+<p>Security extensions</p>
+</li>
+</ul>
+<p><strong><em>And IBM’s full support</em></strong></p>
+<p><img alt="" src="images/media/image21.png" /></p>
+<h3 id="information-only-open-liberty-downloads-docker-and-devops">INFORMATION ONLY – Open Liberty Downloads, Docker, and Devops</h3>
+<p>How do you get Open Liberty?</p>
+<p>Open Liberty can be obtained via zip file downloads, or through Maven,
+Gradle, and Docker.</p>
+<p><img alt="" src="images/media/image22.png" /></p>
+<p>Visit <a href="https://openliberty.io/downloads/">https://openliberty.io/downloads/</a> to find the latest Open
+Liberty releases and builds.</p>
+<p>Open Liberty Zip File Download packages are available here:
+<a href="https://openliberty.io/downloads/#runtime_releases">https://openliberty.io/downloads/#runtime_releases</a></p>
+<p>Below are examples of getting Open Liberty using Maven, Gradle, and
+Docker.</p>
+<p><img alt="" src="images/media/image23.png" /></p>
+<p><img alt="" src="images/media/image24.png" /></p>
+<p><img alt="" src="images/media/image25.png" /></p>
+<h2 id="create-test-server">Create test server</h2>
+<ol>
+<li>
+<p>Open a Terminal window by clicking on the appropriate icon:</p>
+<p><img alt="" src="images/media/image16.png" /></p>
+</li>
+<li>
+<p>Navigate to the Liberty runtime installation directory
+    {LAB_HOME}/wlp/bin</p>
+<pre><code>cd /home/ibmdemo/Student/WLP_21.0.0.3/wlp
+</code></pre>
+</li>
+<li>
+<p>Run the following command to <strong>create</strong> a new server named “<strong>myServer</strong>”</p>
+<pre><code>bin/server create myServer
+</code></pre>
+<p><img alt="" src="images/media/image26.png" /></p>
+<p>The server command supports actions for starting, stopping, creating,
+packaging, and dumping a Liberty server.</p>
+<p>The server create command creates a new Liberty server with the name
+specified.</p>
+<p><strong>Additional detail on the server command can be found here:</strong></p>
+<p><a href="https://www.ibm.com/docs/en/was-liberty/base?topic=line-server-command-options">https://www.ibm.com/docs/en/was-liberty/base?topic=line-server-command-options</a></p>
+</li>
+<li>
+<p>The new server is created in the following directory:</p>
+<p>/home/ibmdemo/Student/WLP_21.0.0.3/wlp/usr/servers/myServer</p>
+<p><img alt="" src="images/media/image27.png" /></p>
+</li>
+<li>
+<p>The <strong>server.xml</strong> file is the complete default server
+    configuration. Open an editor to view the server configuration file.
+    Ensure you are in the correct directory before opening the
+    server.xml file.</p>
+<pre><code>cd /home/ibmdemo/Student/WLP_21.0.0.3/wlp
+
+gedit usr/servers/myServer/server.xml
+</code></pre>
+<p><img alt="" src="images/media/image28.png" /></p>
+<p>The server.xml defines a minimal configuration needed to start a
+ Liberty server.</p>
+<p>In this example, it includes only the JSP feature, and defines the
+ HTTP and HTTPS endpoints that the server is listening for incoming
+ HTTP(S) requests.</p>
+</li>
+<li>
+<p><strong>Close</strong> the gedit editor.</p>
+</li>
+<li>
+<p>Start the server instance using the <strong>server start</strong> command:</p>
+<pre><code>bin/server start myServer
+</code></pre>
+<p><img alt="" src="images/media/image29.png" /></p>
+<p>This runs the server in the background and the output is written to
+files in the {LAB_HOME}/wlp/usr/servers/myServer/logs directory.</p>
+<blockquote>
+<p>Alternatively, to start the server in the foreground (so the console
+messages are seen in the command window) you can use the command
+“<strong>bin/server run myServer</strong>”</p>
+</blockquote>
+</li>
+<li>
+<p>View the Liberty server’s <strong>messages.log</strong> file to see the server
+    startup messages</p>
+<pre><code>cat usr/servers/myServer/logs/messages.log
+</code></pre>
+<p>The server is started when the message “T<strong>he myServer server is ready
+to run a smarter planet”</strong> is displayed in the messages.log file.</p>
+<p><img alt="" src="images/media/image30.png" /></p>
+</li>
+<li>
+<p>Stop the server with the <strong>server stop</strong> command:</p>
+<pre><code>bin/server stop myServer
+</code></pre>
+<p><img alt="" src="images/media/image31.png" /></p>
+</li>
+<li>
+<p>Having verified the Liberty installation, you can delete the test
+    server “<strong>myServer</strong>” simply be removing its directory.</p>
+<p>Delete the server by deleting the
+{LAB_HOME}/wlp/usr/servers/myServer directory.</p>
+<pre><code>rm -rf usr/servers/myServer
+</code></pre>
+<p>You now have a Liberty runtime environment that is ready to create
+ servers to run applications.</p>
+<p><br/></p>
+</li>
+</ol>
+<h3 id="short-recap-of-what-you-just-did">Short recap of what you just did</h3>
+<p>In the previous step, you deleted a Liberty server configuration. You
+ did NOT delete the Liberty installation and its binaries.</p>
+<p>This is an important concept of Liberty. The Liberty Runtime binaries
+ are separate from the Liberty Server configurations.</p>
+<ul>
+<li>
+<p>Liberty was installed in \~/Student/WLP_21.0.0.3<strong>/wlp</strong></p>
+</li>
+<li>
+<p>By default, the Liberty Server configurations are in
+    ~/Student/WLP_21.0.0.3<strong>/wlp/usr/</strong></p>
+</li>
+</ul>
+<p>The Server configuration directory can be located anywhere, including
+ outside of the default location of /wlp/usr.</p>
+<p>The Server configuration location can be over-ridden using the Liberty
+ bult-in variable <strong>“${wlp.user.dir}”.</strong></p>
+<p>In fact, this concept is instrumental in Liberty providing zero
+ migration for unchanged apps while keeping current with Liberty
+ Fixpacks, as illustrated below.</p>
+<ul>
+<li>
+<p>Just install a new Liberty Fixpack (Archive install)</p>
+</li>
+<li>
+<p>Update the WLP_USER_DIR variable to point to your existing server
+    configurations location.</p>
+<p><img alt="" src="images/media/image32.png" /></p>
+</li>
+</ul>
+<h2 id="test-the-websphere-developer-tools-wdt">Test the WebSphere Developer Tools (WDT)</h2>
+<p>You can manage Liberty from the command line and edit the server
+configuration files using your favorite editor.</p>
+<p>However, the WebSphere Developer Tools (WDT) provide a great
+configuration editor, server controls and application publishing, as
+well as many other time-saving utilities. In this section, you will
+explore using WDT with Liberty.</p>
+<p>Normally, you would first download and install Eclipse, followed by the
+installation of WDT Eclipse plugin.</p>
+<p>For this lab, we have bundled everything into a single zip file. The
+directory {LAB_HOME}/wdt contains a prebuilt and expanded WDT.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><img src="./images/media/image2.png" style="width:0.60417in;height:0.60417in" alt="sign-info" /></td>
+<td><p><strong>Information:</strong></p>
+<p>Upon first startup, it may take Eclipse up to a minute to start as it initializes.</p></td>
+</tr>
+</tbody>
+</table>
+
+<ol>
+<li>
+<p>Launch Eclipse</p>
+<p>a. Use the <strong>File Explorer</strong> to navigate to the directory:</p>
+<blockquote>
+<p>Home &gt; Student &gt; WLP_21.0.0.3 &gt; wdt &gt; eclipse</p>
+</blockquote>
+<p>b. Double-click on the <strong>eclipse</strong> executable to start Eclipse.</p>
+<p><img alt="" src="images/media/image33.png" /></p>
+<p>c. When the Eclipse launcher prompts you to select a workspace, enter the
+following directory. Then click the <strong>Launch</strong> button.</p>
+<pre><code>/home/ibmdemo/Student/WLP_21.0.0.3/workspace
+</code></pre>
+<p><img alt="" src="images/media/image34.png" /></p>
+<p>d. Close the <strong>welcome page</strong> by clicking on the <strong>‘X</strong>’ icon.</p>
+<p><img alt="" src="images/media/image35.png" /></p>
+</li>
+</ol>
+<h2 id="create-liberty-server-in-wdt">Create Liberty Server in WDT</h2>
+<p>Previously in the lab, you used the command line to create and start a
+Liberty server.</p>
+<p>Developers often work in an integrated development environments such as
+Eclipse, VS Code, or Intelij, to name a few, to enhance their
+productivity.</p>
+<p>IBM WebSphere Developer Tools for Eclipse enhances developer
+productivity by providing a lightweight set of tools that you can use to
+develop, assemble, and deploy Java EE, OSGi and mobile applications to
+WebSphere Application Server traditional and Liberty.</p>
+<p>In this section, you will use the WebSphere Developer Tools with the
+Eclipse IDE to work with Liberty.</p>
+<p>First, create a Liberty server using the integrated tools.</p>
+<ol>
+<li>
+<p>At the bottom of the Eclipse workbench, open the <strong>Servers</strong> view by
+    clicking the <strong>Servers</strong> tab.</p>
+</li>
+<li>
+<p>Right-click within the windows of the <strong>Servers view</strong> and select
+    <strong>New &gt; Server</strong>  </p>
+<p><img alt="" src="images/media/image36.png" /></p>
+</li>
+<li>
+<p>Under the <strong>server type</strong> list, expand <strong>IBM</strong> and select the
+    <strong>Liberty Server</strong> type.  </p>
+<p><img alt="" src="images/media/image37.png" /></p>
+</li>
+<li>
+<p>Use the default eclipse server name as supplied (<strong>localhost</strong>).</p>
+<p>a.  Click <strong>Next</strong>.</p>
+<p>This creates the liberty server object in eclipse, and the <strong>Liberty
+ Runtime Environment</strong> page is displayed.</p>
+</li>
+<li>
+<p>Now eclipse needs to associate the ‘<strong>localhost’</strong> server with a
+     server configuration in a Liberty runtime (the runtime that you
+     installed previously in the lab).</p>
+<p>a.  In the <strong>Path</strong> field under the “<strong>Choose an existing
+    installation</strong>” section, type or browse for the directory where
+    you installed the Liberty runtime environment shown below:</p>
+<pre><code>/home/ibmdemo/Student/WLP_21.0.0.3/wlp
+</code></pre>
+<p><img alt="" src="images/media/image38.png" /></p>
+<p>b.  Click <strong>Next</strong>. to continue</p>
+</li>
+<li>
+<p>To create the server configuration in the runtime, replace in the
+    <strong>Server name</strong> field with <strong>labServer</strong>. Then click <strong>Finish</strong>.</p>
+<p><img alt="" src="images/media/image39.png" /></p>
+</li>
+<li>
+<p>The new server will appear in the Servers view. You can expand the
+    server to show a quick view of the configuration.</p>
+<p><img alt="" src="images/media/image40.png" /></p>
+</li>
+<li>
+<p>Open the server configuration editor by double-clicking on <strong>Server
+    Configuration (server.xml):</strong></p>
+<p><img alt="" src="images/media/image41.png" /></p>
+</li>
+<li>
+<p>The Server configuration view is displayed. The default view is
+    “<strong>Design</strong>” mode, which provides an intuitive server
+    configuration editor UI.</p>
+<p>a.  Click on the “<strong>Design</strong>” view tab if it is not already
+    selected.</p>
+<p><img alt="" src="images/media/image42.png" /></p>
+<p>b.  You can click on the Source” view tab to edit the server.xml source
+directly.</p>
+<p><img alt="" src="images/media/image43.png" /></p>
+</li>
+</ol>
+<h2 id="cleanup">Cleanup</h2>
+<ol>
+<li>
+<p><strong>Close</strong> the <strong>server.xml</strong> editor</p>
+</li>
+<li>
+<p><strong>Exi</strong>t Eclipse by selecting using the <strong>File &gt; Exit</strong> from the
+    Eclipse main menu.</p>
+</li>
+<li>
+<p>Close any open <strong>Terminal</strong> windows</p>
+</li>
+</ol>
+<p><strong>=== END OF LAB ===</strong></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2022-11-30 16:50:18
+-->

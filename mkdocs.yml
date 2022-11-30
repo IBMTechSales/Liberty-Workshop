@@ -1,6 +1,7 @@
-site_name: Liberty Workshop Instructor Guide
+site_name: Liberty Workshop
 nav:
   - Home: index.md
   - Reserve lab environment or workshop: ./environments-setup/index.md
+  - Labs: ./LibertyLabs.md
 theme: readthedocs
 extra_css: ["extra.css"]

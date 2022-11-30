@@ -5,7 +5,7 @@ description:
 
 ## About environment reservations and workshops
 
-The **Teaching your monolith to dance** asset includes customer facing hands on use case driven labs for containerization, OpenShift, WebSphere Application Modernization, Devops Modernization, and Application Management Modernization. 
+The **Liberty Workshop** asset includes customer facing hands on use case driven labs for Liberty, Transformation Advisor, and Mono2Micro. 
 
 The material can be used in a variety of ways: 
 

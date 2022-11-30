@@ -1,4 +1,4 @@
-# Liberty Workshop - Instructor Guide
+# Liberty Workshop 
 
 ![](images/Liberty-header.png)
 
@@ -41,7 +41,7 @@ This is a hands-on workshop that contains the following exercises:
   - Using Liberty in Dev Mode via command line
   - Using Liberty Tools in VS Code IDE
   - Using Mono2Micro to create partition services from a WebSphere monolith application
-  - Using Transformation Advisor to assess WebSphere applications for moving to container-based cloud
+  - Using Transformation Advisor to assess WebSphere applications and deployig to Liberty and containers
 
 
 <h2 style="color:green">Reserve lab environments</h2>
@@ -80,9 +80,9 @@ Please follow the [reserve environment instructions](./environments-setup/index.
 [Recorded Demonstrations](https://ibm.box.com/v/LibertyWS-recordDemos)
    
 
-<h3> Download Hands-on Labs (MS Word and PDF frmats)</h3>
+<h3> Hands-on Labs </h3>
 
-[Hands-on Labs](https://ibm.box.com/v/LibertyWorkshop-labs)
+[Hands-on Labs](./LibertyLabs.md)
    
 
 

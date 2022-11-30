@@ -2,31 +2,17 @@
 
 ![banner](./images/demo.png)
 
-Need support? Contact **Kevin Postreich**
+Need support? Contact **Kevin Postreich**, **Yi Tang**
 
 
 |         |           |  
 | ------------- |:-------------|
-| ![](./images/image31.png?cropResize=50,50)   | <strong>IMPORTANT:</strong> <br><br> A Skytap lab environment is provided for the labs/demos in this asset. <br><br>Environment reservations are immediate and can be reserved for up to two weeks in duration. <br><br>Use the instructions below to reserve your demo/lab environment. 
+| ![](./images/image31.png?cropResize=50,50)   | <strong>IMPORTANT:</strong> <br><br> A VMWare on IBM Cloud lab environment is provided for the labs/demos in this asset. <br><br>Environment reservations are immediate and can be reserved for up to two weeks in duration. <br><br>Use the instructions below to reserve your demo/lab environment. 
 
-<!--
-<table>
-<tbody>
-<tr class="odd">
-<td><img src="/images/image31.png" style="width:0.90417in;height:0.60417in" alt="sign-caution" /></td>
-<td><p><strong>IMPORTANT!</strong></p>
-<p>Reserving an environment ONLY applies if you are performing this lab as self-paced outside of an instructor led virtual lab.</p>
-<p>A Skytap cloud lab environment is required for performing the lab.</p>
-<p>In <strong>self-paced mode</strong>, you are required to request an environment using the instructions provided below.</p>
-<p>Otherwise, in an <strong>instructor led</strong> lab, the lab instructor will provide access to pre-provisioned lab environment.</p></td>
-</tr>
-</tbody>
-</table>
--->
 
 1.  Use the link below to access the **Liberty Workshop** environment reservations page.  
 
-    <https://techzone.ibm.com/my/reservations/create/6127f5c66c03be001ef63c48>
+    <https://techzone.ibm.com/my/reservations/create/63877af037f8a600183c737b>
 
     a.  Use your **IBM ID** to login to the IBM Technology Zone
 
@@ -37,10 +23,10 @@ Need support? Contact **Kevin Postreich**
 	 <br>
 
 2.  Select “**Reserve for Now**” Radio button, and then follow the
-    on-screen dialog to reserve an environment in a Skytap data center
+    on-screen dialog to reserve an environment in an IBM Cloud data center
     in the closest Geography (US-Central, EMEA, Asia Pacific)
     
-    a.  The environment **name** should be pre-filled with “**Liberty Workshop Skytap Environment**”
+    a.  The environment **name** should be pre-filled with “**Liberty Workshop environment - VMWare**”
     
     b.  **Purpose**: Select a `purpose` from the drop-down menu
 	
@@ -64,7 +50,7 @@ Need support? Contact **Kevin Postreich**
 
     <br/>
 
-3.  Preferred Geography: Choose a Skytap datacenter in the closest
+3.  Preferred Geography: Choose an IBM CLoud datacenter in the closest
     geography (US, EMEA, Asia Pacific)
 
     ![](./images/env-geo.png)
@@ -82,38 +68,29 @@ Need support? Contact **Kevin Postreich**
 
     **Note:** The details of your environment reservation are displayed.
 
-6.  Take not of the **Username** and **Password**. Then click the
-    ![](./images/image56.png) icon to navigate to the Launch
-    page.
+6.  Then click the reservation page to access the reseration details.
 
-    ![](./images/image57.png)
+    ![](./images/reservation-image.png)
 	
 	<br>
 
-7.  Click the “**Open Your Skytap Environment**” link.
+7.  On the reservation details page, you will find the **Published Service** that is used to access the lab environment. 
+
+
+8.  Now open the specific lab guide you want to use, and follow the instructions for using the **Published Service** link to acces the lab environment and how to login to the VM. 
 
     <br>
 
-8.  Enter the **Desktop Password** for the VM access, that was generated
-    for your environment. Click **Submit** button.
-
-    ![](./images/image58.png)
 
 ### **The lab environment**
 
-Six Linux VM has been provided for this lab. The environment should start automatically and will take several minutes to be **ready**. 
+One Ubuntu Linux VM has been provided for this lab. The environment should start automatically and will take several minutes to be **ready**. 
 
-If the environment does not automatically start, click the **start** icon at the top of the VMs list, to start **ALL** of the VMs.
 
-**Note:** If the Skytap Cloud environment resources approach capacity limits, you may experience delays in **stating** the environment. If this occurs, you will see `rate limited` messages. Not to worry, the environment will start, but just be delayed while the system is busy. Under certain circumstances, it may take up to **10 minutes** for the environment to start.
+![](./images/liberty-workstation-vm.png)
 
-![](./images/image59.png)
 
-**Note:** The `Liberty vPoT` VM is the VM you will login to and use in the lab.
-
-![](./images/image60.png)
-
-The login credentials for the **desktop** image is:
+The login credentials for the **workstation** VM is:
 
   - User ID: **ibmdemo**
  
@@ -139,7 +116,7 @@ This section describes how to find your environment reservations in the IBM Tech
 
     <br/>
 
-4. Select the **Liberty Workshop Skytap Environment** reservation
+4. Select the **Liberty Workshop environment - VMWare** reservation
 
     ![](./images/reservation-image.png)
 

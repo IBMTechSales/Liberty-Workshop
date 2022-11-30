@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../../../img/favicon.ico">
+  <title>Modern Development experience with Liberty and Java applications - Liberty Workshop</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../../../extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Modern Development experience with Liberty and Java applications";
+    var mkdocs_page_input_path = "lab-guides\\md\\lab3\\Lab03-Liberty_devmode_v1.4.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../../../.." class="icon icon-home"> Liberty Workshop</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../../../environments-setup/">Reserve lab environment or workshop</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../../../LibertyLabs/">Labs</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../..">Liberty Workshop</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Modern Development experience with Liberty and Java applications</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="modern-development-experience-with-liberty-and-java-applications">Modern Development experience with Liberty and Java applications</h1>
+<h2 id="lab-getting-started-with-liberty-and-dev-mode">Lab: Getting Started with Liberty and Dev Mode</h2>
+<h2 id="objectives">Objectives</h2>
+<p>In this exercise, you will learn how developers can use Liberty in “dev”
+mode for achieving efficient iterative develop, test, debug cycle when
+developing Java based applications / microservices.</p>
+<p>At the end of this lab you should be able to:</p>
+<ul>
+<li>
+<p>Use Liberty dev mode (stand-alone) without an IDE</p>
+</li>
+<li>
+<p>Experience hot reloading of application code and configuration
+    changes using dev mode</p>
+</li>
+<li>
+<p>Work with Liberty dev mode in containers</p>
+</li>
+<li>
+<p>Run integrated unit/integration tests from Liberty dev mode</p>
+</li>
+</ul>
+<p>You will need an estimated <strong>45 to 60 minutes</strong> to complete this lab.</p>
+<h2 id="lab-requirements">Lab requirements</h2>
+<ul>
+<li>Use the lab environment that we prepared for this lab. It already
+    has the prerequisite software installed and configured.</li>
+</ul>
+<h2 id="introduction-liberty-and-dev-mode">Introduction - Liberty and "dev" Mode</h2>
+<p><strong>Open Liberty</strong> is an application server designed for the cloud. It’s
+small, lightweight, and designed with modern cloud-native application
+development in mind.</p>
+<p>Open Liberty supports the full MicroProfile and Jakarta EE APIs and is
+composable, meaning that you can use only the features that you need,
+keeping the server lightweight, which is great for microservices. It
+also deploys to every major cloud platform, including Docker,
+Kubernetes, and Cloud Foundry.</p>
+<p><strong>Maven</strong> is an automation build tool that provides an efficient way to
+develop Java applications. Using Maven, you will build a simple
+microservice, called <strong>system</strong>, that collects basic system properties
+from your laptop and displays them on an endpoint that you can access in
+your web browser.</p>
+<p>Open Liberty <strong>development mode</strong>, or dev mode, allows you to develop
+applications with any text editor or IDE by providing hot reload and
+deployment, on demand testing, and debugger support. Open Liberty Dev
+Mode is enabled through <strong>Maven</strong> and <strong>Gradle</strong> projects.</p>
+<p>Your code is automatically compiled and deployed to your running server,
+making it easy to iterate on your changes.</p>
+<p>You can run tests on demand or even automatically so that you can get
+immediate feedback on your changes. You can also attach a debugger at
+any time to debug your running application.</p>
+<p><img alt="" src="../images/media/image3.png" /></p>
+<h2 id="the-lab-environment">The lab environment</h2>
+<p>One (1) Linux VM has been provided for this lab.</p>
+<p><img alt="" src="../images/media/image4a.png" /></p>
+<blockquote>
+<p>The <strong>“Liberty vPOT … Desktop”</strong> VM has the following software
+available:</p>
+</blockquote>
+<ul>
+<li>
+<p>Application Project with Liberty</p>
+</li>
+<li>
+<p>Maven 3.6.0</p>
+</li>
+</ul>
+<!-- end list -->
+
+<ul>
+<li>The login credentials for the <strong>Liberty vPOT … Desktop”</strong> VM are:</li>
+</ul>
+<blockquote>
+<p>User ID: <strong>ibmdemo</strong></p>
+<p>Password: <strong>passw0rd (That is a numeric zero in passw0rd)</strong></p>
+</blockquote>
+<h3 id="login-to-the-liberty-vpot-desktop-vm-and-get-started"><strong>Login to the "Liberty vPOT … Desktop" VM and Get Started</strong></h3>
+<ol>
+<li>
+<p>If the VM is <strong><span class="underline">not</span></strong> already started,
+    start it by clicking the <strong>Play</strong> button.</p>
+<p><img alt="" src="../images/media/image5a.png" /></p>
+</li>
+<li>
+<p>After the VM is started, click the <strong>“Liberty vPOT … Desktop”</strong> VM
+    icon to access it.</p>
+<p><img alt="" src="../images/media/image6a.png" /></p>
+</li>
+<li>
+<p>Login with <strong>ibmdemo</strong> ID.</p>
+<p>a.  Click on the “<strong>ibmdemo</strong>” icon on the Ubuntu screen.</p>
+<p><img alt="" src="../images/media/image7.png" /></p>
+<p>b. When prompted for the password for “ibmdemo” user, enter
+“<strong>passw0rd</strong>” as the password:</p>
+<p>Password: <strong>passw0rd</strong> (lowercase with a zero instead of the o)</p>
+<p><img alt="" src="../images/media/image8.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Resize the Skytap environment window for a larger viewing area while
+    doing the lab.</p>
+</li>
+</ol>
+<blockquote>
+<p>From the Skytap menu bar, click on the “<strong>Fit to Size</strong>”
+<img alt="" src="../images/media/image9.png" /> icon. This will enlarge the
+viewing area to fit the size of your browser window.</p>
+<p><img alt="" src="../images/media/image10.png" /></p>
+</blockquote>
+<h3 id="if-at-aytime-during-the-lab-you-ar-asked-to-install-updates-click-cancel">If, at aytime during the lab, you ar asked to install updates, click CANCEL!</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../images/media/image11.png?cropResize=100,100" /></td>
+<td align="left"><p><strong>Important:</strong> <p><strong>Click CANCEL</strong>…. If, at any time during the lab, you get a pop-up asking to install updated software onto the Ubuntu VM.</p> <p>The one we experience is an update available for VS Code.</p><p><strong>CLICK CANCEL!</strong></p><p><img alt="" src="../images/media/image12.png?cropResize=100,100" /></p></td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<h2 id="getting-started-with-liberty-and-dev-mode">Getting Started with Liberty and Dev Mode</h2>
+<p>In this lab, you will learn how to run and update a simple REST
+microservice on an Open Liberty server using the developer mode (dev
+mode). You will use Maven throughout the guide to build and run the
+microservice as well as to interact with the running server instance.</p>
+<h3 id="building-and-running-the-application-using-maven-and-the-liberty-maven-plugin"><strong>Building and running the application using Maven and the liberty-maven-plugin</strong></h3>
+<p>The sample application used in this lab is configured to be built with
+Maven. Every Maven-configured project contains a pom.xml file, which
+defines the project configuration, dependencies, plug-ins, and so on.</p>
+<p>Your pom.xml file is located in the root directory of the project and is
+configured to include the liberty-maven-plugin, which allows you to
+install applications into Open Liberty and manage the server instances.</p>
+<p>To begin, navigate to the project directory. Build the “<strong>system”</strong>
+microservice that is provided and deploy it to Open Liberty by running
+the Maven <strong>liberty:run</strong> goal:</p>
+<ol>
+<li>
+<p>Navigate to the project directory. Build the “<strong>system”</strong>
+    microservice that is provided and deploy it to Open Liberty by
+    running the Maven <strong>liberty:run</strong> goal:</p>
+<p>a.  Open a terminal window and change to the directory
+    <strong>/home/ibmdemo/Student/labs/devmode/demo-project</strong></p>
+<pre><code>cd /home/ibmdemo/Student/labs/devmode/demo-project
+</code></pre>
+<p>b.  Run the mvn libert:run command to start the Liberty server</p>
+<pre><code>mvn liberty:run
+</code></pre>
+<p>The mvn command initiates a <strong>Maven build</strong>, during which the target directory is created to store all build-related files.</p>
+<p>The <strong>liberty:run</strong> argument specifies the Open Liberty run goal,which starts an Open Liberty server instance in the foreground.</p>
+<p>As part of this phase, an Open Liberty server runtime is downloaded
+and installed into the target/liberty/wlp directory, a server instance is created and configured in the target/liberty/wlp/usr/servers/defaultServer directory, and the application is installed into that server.</p>
+<p>When the server begins starting up, various messages display in your command-line session. Wait for the following message, which indicates that the server startup is complete:</p>
+<p><strong>The server defaultServer is ready to run a smarter planet.</strong></p>
+<p><img alt="" src="../images/media/image13.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Access the “system” microservice that was deployed to the Liberty
+    server.</p>
+<p>a.  Open the Firefox Web Browser from inside of the VM and go to the URL below. The microservice lists various system properties of
+    your JVM.</p>
+<pre><code>http://localhost:9080/system/properties
+</code></pre>
+<p><img alt="" src="../images/media/image14.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p><strong>Stop</strong> the Liberty Server by pressing the <strong>CTRL+C</strong> in the
+    command-line session where you ran the server.</p>
+</li>
+<li>
+<p>Start and Stop the Liberty server in the background</p>
+<p>Although you can start and stop the server in the foreground by using the Maven liberty:run goal, you can also start and stop the server in the background with the Maven <strong>liberty:start</strong> and <strong>liberty:stop</strong> goals:</p>
+<pre><code>mvn liberty:start
+
+mvn liberty:stop
+</code></pre>
+</li>
+<li>
+<p>View the <strong>pom.xml</strong> file to see the liberty-maven-plugin that was
+    &gt; used by the previous steps.</p>
+<p>a.  From a Terminal window, navigate to the following directory</p>
+<pre><code>cd /home/ibmdemo/Student/labs/devmode/demo-project
+</code></pre>
+<p>b.  View the relevant plugin in the pom.xml file. The -A and -B options on the grep command display the specified number of lines before and after the location of the search text string.</p>
+<pre><code>cat pom.xml | grep -B 4 -A 2 liberty-maven-plugin
+</code></pre>
+<p><img alt="" src="../images/media/image15.png" /></p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../images/media/image11.png?cropResize=100,100" /></td>
+<td align="left"><p><strong>Information:</strong></p> <p><strong>Tip:</strong> Additional information on the liberty-maven-plugin can be found here:</p><p><a href="https://github.com/OpenLiberty/ci.maven">https://github.com/OpenLiberty/ci.maven</a></p></td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<h3 id="updating-the-application-without-restarting-the-server"><strong>Updating the application without restarting the server</strong></h3>
+<p>The Open Liberty Maven plug-in includes a <strong>dev</strong> goal that listens for
+any changes in the project, including application source code or
+configuration changes. The Open Liberty server automatically reloads the
+application and configuration without restarting. This goal allows for
+quicker turnarounds and an improved developer experience.</p>
+<ol>
+<li>
+<p>Start the Liberty server in “dev” mode</p>
+<p>a.  From a Terminal window, navigate to the following directory</p>
+<pre><code>cd /home/ibmdemo/Student/labs/devmode/demo-project
+</code></pre>
+<p>b.  Ensure the Liberty server is STOPPED!</p>
+<pre><code>mvn liberty:stop
+</code></pre>
+<p>c. Start Liberty in dev mode</p>
+<pre><code>mvn liberty:dev
+</code></pre>
+<p><strong>Note:</strong> The Liberty is now started in dev mode.</p>
+<p><img alt="" src="../images/media/image16.png" /></p>
+<p>Dev mode automatically picks up changes that you make to your application and allows you to run tests by pressing the <strong>enter/return</strong> key in the active command-line session. When you’re working on your application, rather than rerunning Maven commands, press the enter/return key to verify your change, which executes your tests.</p>
+<p><br/></p>
+</li>
+<li>
+<p>Access the “system” microservice that was deployed to the Liberty server.</p>
+<p>a.  Open the Firefox Web Browser from inside of the VM and go to the URL below to display the main application web page</p>
+<pre><code>http://localhost:9080/
+</code></pre>
+<p><img alt="" src="../images/media/image17.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Make a minor change to the “system Properties Sample” source code
+    while running in dev mode, to see the changes dynamically picked
+    up and applied to the running server.</p>
+<p>a.  Open a <strong>new terminal window</strong> and navigate to <strong>src/main/webapp</strong> folder of the application as illustrated below.</p>
+<pre><code>cd /home/ibmdemo/Student/labs/devmode/demo-project/src/main/webapp
+</code></pre>
+<p>b.  Use the gedit editor to open the <strong>index.html</strong> file in edit mode</p>
+<pre><code>gedit index.html
+</code></pre>
+<p>c.  Make the following minor change to the index.html page</p>
+<p><strong>Change the highlighted line:</strong></p>
+<p><img alt="" src="../images/media/image18.png" /></p>
+<p><strong>Updated to read:</strong> System Properties Demo</p>
+<p><img alt="" src="../images/media/image19.png" /></p>
+<p>d.  <strong>Save</strong> the file and <strong>close</strong> the gedit editor.</p>
+<p><br/></p>
+</li>
+<li>
+<p>Access the <strong>System Properties Sample</strong> microservice that was deployed to the Liberty server.</p>
+<p>a.  From the Firefox Web Browser inside of the VM and go to the URL
+below to display the main application web page</p>
+<pre><code>http://localhost:9080/
+</code></pre>
+<p>b.  <strong>IMPORTANT</strong>: Click the <strong>RELOAD</strong> icon in the Firefox browser to reload the page. Browsers cache content, so you need to reload the page.</p>
+<p><img alt="" src="../images/media/image20.png" /></p>
+<p>c.  The updated index.html page is displayed with your changes
+dynamically picked up </p>
+<p><img alt="" src="../images/media/image21.png" /></p>
+<p>The application code changes were detected and dynamically applied to the running instance of the Liberty server.</p>
+<p><br/></p>
+</li>
+</ol>
+<h3 id="updating-the-server-configuration-without-restarting-the-server"><strong>Updating the Server configuration without restarting the server</strong></h3>
+<p>The Open Liberty Maven plug-in’s <strong>dev goal</strong> not only listens for
+application code changes, but also <strong>configuration changes</strong> in the
+project. The Open Liberty server automatically reloads the configuration
+without restarting. This goal allows for quicker turnarounds and an
+improved developer experience.</p>
+<p>In this section, you make a simple configuration change in the Liberty
+Server configuration file (server.xml) of the project (src), to include
+a <strong>/health</strong> endpoint for the service. You will notice that the changes
+are detected by maven and dynamically updated on the target server.xml.
+The running Liberty instance automatically picks up the changed target
+configuration</p>
+<p>If you try to access this /health endpoint now, you see a 404 error
+because the <strong>/health</strong> endpoint does not yet exist:</p>
+<ol>
+<li>
+<p>From the Firefox browser in the VM, try to access the applications /health endpoint at:</p>
+<pre><code>&lt;http://localhost:9080/health/&gt;
+</code></pre>
+<p><img alt="" src="../images/media/image22.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Make a simple change to the Liberty Server configuration file to add <strong>the mpHealth-2.2</strong> feature to the server.xml file, which enables the health check endpoint.</p>
+<p>a  From a terminal window, navigate to <strong>liberty/config</strong> folder of the application</p>
+<pre><code>cd /home/ibmdemo/Student/labs/devmode/demo-project/src/main/liberty/config
+</code></pre>
+<p>b.  Use the gedit editor to open the <strong>server.xml</strong> file in edit mode</p>
+<pre><code>gedit server.xml
+</code></pre>
+<p>c.  Add the Make the following minor change to the server.xml file</p>
+<p><strong>Change the highlighted line:</strong></p>
+<p><img alt="" src="../images/media/image23.png" /></p>
+<p><strong>Updated to include:</strong> \&lt;feature>mpHealth-2.2\&lt;/feature></p>
+<p><img alt="" src="../images/media/image24.png" /></p>
+<p>d.  <strong>Save</strong> the file and <strong>close</strong> the gedit editor.</p>
+<p><br/></p>
+</li>
+<li>
+<p>Access the new <strong>Health Endpoint</strong> for the application.</p>
+<p>a.  Open the Firefox Web Browser from inside of the VM and go to the URL below to display the health endpoint.</p>
+<pre><code>http://localhost:9080/health
+</code></pre>
+<p><img alt="" src="../images/media/image25.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>View the Liberty server console log to see the <strong>mpHealth-2.2</strong> feature was installed, and the health endpoint enabled.</p>
+<p>a.  Return to the Terminal window where the <strong>mvn liberty:dev</strong> is
+running.</p>
+<p>b.  Review the messages that indicate the <strong>mpHealth-22</strong> feature was dynamically installed and the <strong>/health</strong> endpoint enabled.</p>
+<p><img alt="" src="../images/media/image26.png" /></p>
+<p>The Liberty server configuration changes were detected and dynamically applied to the running instance of the Liberty server.</p>
+<p>The <strong>/health</strong> endpoint reports whether the server is running, but the endpoint doesn’t provide any details on the microservices that are running inside of the server.</p>
+<p><strong>MicroProfile Health</strong> offers health checks for both readiness and
+liveness.</p>
+<ul>
+<li>
+<p>A <strong>readiness</strong> check allows third-party services, such as Kubernetes, to know if the microservice is ready to process requests.</p>
+</li>
+<li>
+<p>A <strong>liveness</strong> check allows third-party services to determine if the microservice is running.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Note:</strong> Working with MicroProfile Health is beyond the scope of
+    this lab and is introduced in a subsequent lab.</p>
+<p><br/></p>
+<h2 id="developing-and-running-the-application-in-a-docker-container-and-in-liberty-dev-mode">Developing and Running the application in a Docker Container and in Liberty Dev Mode</h2>
+<p>When developing an application that will eventually be deployed to
+production in <strong>containers</strong>, you can avoid potential issues by ensuring
+that your development and production environments are as similar as
+possible. This aligns with <a href="https://openliberty.io/blog/2019/09/05/12-factor-microprofile-kubernetes.html">Twelve Factor
+App</a>
+methodology, particularly factor 10, which calls for dev/prod parity.
+For cloud-native applications, part of this issue is addressed by using
+containers where your environment can be codified to provide consistency
+between development and production.</p>
+<p>In this section of the lab, you will use <strong>Liberty dev mode with
+containers</strong>. With container support, you can develop applications on
+your local environment while your Open Liberty server runs in a
+container.</p>
+<p>The development container image is kept as similar as possible to the
+production container image, while still allowing for iterative
+development. Your code changes are automatically hot deployed to the
+container and picked up by the running server. Additionally, dev mode
+allows you run tests either automatically or on demand, and you can
+attach a debugger at any time to debug your application.</p>
+<p>With container support for Open Liberty dev mode, you can use the same
+<strong>Dockerfile</strong> for both development and production. You use the same
+base image and customizations, and you specify the exact configuration
+files that you need for your application in your Dockerfile. This
+prevents you from running into any surprises when you deploy your
+application to production.</p>
+<p>Dev mode changes how the image is built and run to enable iterative
+development, so the images are identical except for how application and
+configuration files are mounted into the containers. With dev mode,
+simply save a source file in any text editor or IDE, and it is
+recompiled and picked up without any need to rebuild the image or
+restart the server.</p>
+<h3 id="investigate-docker-commands-and-dockerfile-for-building-images"><strong>Investigate Docker Commands and Dockerfile for building images</strong></h3>
+<p>This section is a primer on how to use, build, deploy and run Liberty in a Docker container. You will pull Liberty from Docker hub, install it, review information about the container, access resources inside the
+container, add an application then test it.</p>
+<p>To run the application in a container, Docker needs to be installed and
+the Docker daemon running. In this lab environment, these prerequisites
+have been configured.</p>
+<ol>
+<li>
+<p>Open a Terminal window and verify that Docker is running</p>
+<pre><code>docker --version
+</code></pre>
+<p><img alt="" src="../images/media/image27.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Run the hello-world docker sample. The docker image will be pulled from Dockerhub if it is not already on the local machine. If Docker is functioning properly, you will see the highlighted message illustrated below, stating that Docker is working properly.</p>
+<pre><code>docker run --name hello-world hello-world |
+</code></pre>
+<p><img alt="" src="../images/media/image28.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Use the <strong>docker images</strong> command to find out which Docker images are in the local docker repository</p>
+<pre><code>docker images
+</code></pre>
+<p><img alt="" src="../images/media/image29.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Use the docker history command to view the layers that make up the Docker image</p>
+<pre><code>docker history hello-world
+</code></pre>
+<p><img alt="" src="../images/media/image30.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Let’s run a Liberty image Docker container. Docker will check if there is an image in the repository. If not, it will download the latest image, then run it</p>
+<pre><code>docker run -d -p 9086:9080 --name wlp websphere-liberty
+</code></pre>
+<p><img alt="" src="../images/media/image31.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Review the containers information.</p>
+<p>a.  The <strong>docker ps</strong> command lists only <strong>running</strong> containers. The docker <strong>ps -a</strong> command shows all containers, running or     stopped.</p>
+<pre><code>docker ps
+</code></pre>
+<p><img alt="" src="../images/media/image32.png" /></p>
+<p>b.  The <strong>docker stats</strong> command shows resource usage of the running containers. Use the <strong>Ctrl + C</strong> keys to stop stats</p>
+<pre><code>docker stats
+</code></pre>
+<p><img alt="" src="../images/media/image33.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Open the Firefox browser on the VM and access Liberty running in the container: <strong>http://localhost:9086</strong></p>
+<p><img alt="" src="../images/media/image34.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Look at the Liberty logs in the running container</p>
+<pre><code>docker logs -f wlp
+</code></pre>
+<p><img alt="" src="../images/media/image35.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p><strong>Stop</strong> and <strong>remove</strong> the docker containers used in this section of the lab. Then use the <strong>docker ps -a</strong> command to verify the containers are removed.</p>
+<pre><code>docker stop wlp
+
+docker rm wlp&lt;/p&gt;
+
+docker rm hello-world&lt;/p&gt;
+
+ docker ps -a&lt;/p&gt;&lt;/td&gt;
+</code></pre>
+<p><br/></p>
+</li>
+</ol>
+<h3 id="running-the-application-in-a-container"><strong>Running the application in a container</strong></h3>
+<p>To run the application in a container, Docker needs to be installed and
+the Docker daemon running. In this lab environment, these prerequisites
+have been configured.</p>
+<p>First, to containerize the application, you need a <strong>Dockerfile</strong>. This
+file contains a collection of instructions that define how a Docker
+image is built, what files are packaged into it, what commands run when
+the image runs as a container, and other information.</p>
+<p>For this lab, a <strong>Dockerfile</strong> has been provided to build the docker
+image for the System Properties Sample. This Dockerfile copies the
+<strong>.war</strong> file into a Docker image that contains the Java runtime and a
+preconfigured Open Liberty server.</p>
+<ol>
+<li>
+<p>From a Terminal window, STOP the running Liberty Server from the previous section of the lab, using the commands below:</p>
+<pre><code>cd /home/ibmdemo/Student/labs/devmode/demo-project
+
+mvn liberty:stop
+</code></pre>
+</li>
+<li>
+<p>View the Dockerfile that is used to build the docker image.</p>
+<p>a.  Open a terminal window and change to the directory:
+    <strong>/home/ibmdemo/Student/labs/devmode/demo-project</strong></p>
+<pre><code>cd /home/ibmdemo/Student/labs/devmode/demo-project
+</code></pre>
+<p>b.  Investigate the Dockerfile</p>
+<pre><code>cat Dockerfile |
+</code></pre>
+<p><strong>The Dockerfile performs the following tasks:</strong></p>
+<p><img alt="" src="../images/media/image36.png" /></p>
+<p><strong>Read below for a short description and details of the commands in the Dockerfile:</strong></p>
+<ul>
+<li>
+<p><strong>FROM openliberty/open-liberty:kernel-java8-openj9-ubi</strong></p>
+<p>FROM specifies the Docker image that is to be used. If this is not in the local repository, this will be pulled from Docker Hub.</p>
+<p>In this example, we pull the liberty kernel image that contains Java 8, and uses the RedHat Universal base Images for deployments to OpenShift.</p>
+<p>The <strong>kernel</strong> image contains just the Liberty kernel and no additional runtime features. This image is the recommended basis for custom built images, so that they can contain only the features required for a specific application</p>
+<p><br/></p>
+</li>
+<li>
+<p><strong>ARG VERSION=1.0 and ARG REVISION=SNAPSHOT</strong></p>
+<p>The ARG instruction defines variables that can be passe at build time. Once it is defined in the Dockerfile, you can pass it with the flag <strong>--build-arg</strong>.</p>
+<p><br/></p>
+</li>
+<li>
+<p><strong>LABEL</strong></p>
+<p>Labels are used in Dockerfile to help organize your Docker Images. Labels are key-value pairs and simply adds custom metadata to your Docker Images.</p>
+<p><br/></p>
+</li>
+<li>
+<p><strong>COPY --chown=1001:0 src/main/liberty/config/ /config/</strong></p>
+<p>The COPY command copies the liberty configuration file (server.xml) to the /config folder in the Liberty container.</p>
+<p>The RedHat Universal Base Images (UBI) are built such that Liberty does not run as root. To ensure that Liberty can access the files that are copied to the image, they must be owned by a non-root user.</p>
+<p>All Liberty images from IBM contain a non- root user defined as <strong>1001:0</strong>. So the copy command copies the files as the non-root user that is known to exist on the LIBERTY image.</p>
+<p><br/></p>
+</li>
+<li>
+<p><strong>COPY --chown=1001:0 target/*.war /config/apps/</strong></p>
+<p>The COPY command copies the application WAR file to the /config/apps directory on the image.</p>
+<p><br/></p>
+</li>
+<li>
+<p><strong>RUN configure.sh</strong></p>
+<p>The configure.sh script installs the required Liberty features based on the features defined in the server configuration file (server.xml). This script is baked into ALL Liberty and tWAS Docker images provided by IBM.</p>
+<p><br/></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Run the <strong>mvn package</strong> command from the <strong>demo-project</strong> directory. The command will produce a war file named "<strong>guide-getting-started.war</strong>” and copied to the “<strong>target</strong>” directory.</p>
+<pre><code>mvn package
+</code></pre>
+<p><img alt="" src="../images/media/image37.png" /></p>
+<p>The Maven package command builds the application and produces an application deployable binary “.war” file that is copied into the Docker image via the Dockerfile.</p>
+<p><br/></p>
+</li>
+<li>
+<p>Run the following command to download or update to the latest Open iberty Docker image used in our Dockerfile:</p>
+<pre><code>docker pull openliberty/open-liberty:kernel-java8-openj9-ubi
+</code></pre>
+<p><strong>Note:</strong> The image has already been pulled onto this VM. So, you may only see a message indicating the image is already up to date, rather than pulling the image again.</p>
+<p><img alt="" src="../images/media/image38.png" /></p>
+<p>OR, you might see this message if the latest image is already pulled.</p>
+<p><img alt="" src="../images/media/image39.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>To build and containerize the application, run the following Docker build command. Be sure you are in the directory that contains the Docker file.</p>
+<p><strong>Note:</strong> The <strong>dot</strong> at the end of the docker build command is part of the command, indicating to use the current directory path.</p>
+<pre><code>cd /home/ibmdemo/Student/labs/devmode/demo-project
+
+docker build -t openliberty-getting-started:1.0-SNAPSHOT .
+</code></pre>
+<p><img alt="" src="../images/media/image40.png" /></p>
+<p>The Docker <strong>openliberty-getting-started:1.0-SNAPSHOT</strong> image is built from the <strong>Dockerfile</strong>.</p>
+<p><br/></p>
+</li>
+<li>
+<p>To verify that the image is built, run the <strong>docker images</strong> command to list all local Docker images</p>
+<pre><code>docker images
+</code></pre>
+<p>Your image should be listed as “<strong>openliberty-getting-started</strong>” with the TAG of “<strong>1.0-SNAPSHOT</strong>”</p>
+<p><img alt="" src="../images/media/image41.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Next, run the container from the image.</p>
+<pre><code>docker run -d --name gettingstarted-app -p 9080:9080 openliberty-getting-started:1.0-SNAPSHOT
+</code></pre>
+<p><img alt="" src="../images/media/image42.png" /></p>
+<p>There is a bit going on in that command; so, here is a short description of the parameters on the command. And the final argument on the command is the Docker image name.</p>
+<p><img alt="" src="../images/media/image43.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Run the <strong>docker ps</strong> command to verify your docker container is  running</p>
+<pre><code>docker ps
+</code></pre>
+<p><img alt="" src="../images/media/image44.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>From a Web Browser, access the application using:
+    <strong>http://localhost:9080/system/properties</strong></p>
+<p><img alt="" src="../images/media/image45.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Stop and Remove the Docker container</p>
+<pre><code>docker stop gettingstarted-app
+
+docker rm gettingstarted-app
+</code></pre>
+<p><br/></p>
+</li>
+<li>
+<p>Remove the Docker image</p>
+<pre><code>docker rmi openliberty-getting-started:1.0-SNAPSHOT
+</code></pre>
+<p><br/></p>
+</li>
+</ol>
+<h3 id="using-dev-mode-to-develop-an-application-in-a-docker-container"><strong>Using Dev mode to develop an application in a Docker container</strong></h3>
+<p>The Open Liberty Maven plug-in includes a <strong>devc</strong> goal that simplifies
+developing your application in a Docker container by starting dev mode
+with container support.</p>
+<p>This <strong>devc</strong> goal builds a Docker image, mounts the required
+directories, binds the required ports, and then runs the application
+inside of a container. Dev mode also listens for any changes in the
+application source code or configuration and rebuilds the image and
+restarts the container as necessary.</p>
+<ol>
+<li>
+<p>Build and run the container by running the devc goal from the start directory:</p>
+<pre><code>mvn liberty:devc
+</code></pre>
+<p>a.  When you see the massage: “<strong>liberty is running in dev mode</strong>”, Open Liberty is ready to run in dev mode:</p>
+<p><img alt="" src="../images/media/image46.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>Open another Terminal window and run the <strong>docker ps</strong> command to verify that the container is started.</p>
+<pre><code>docker ps
+</code></pre>
+<p><img alt="" src="../images/media/image47.png" /></p>
+<p><br/></p>
+</li>
+<li>
+<p>From a Web Browser, access the application using:
+    <strong>http://localhost:9080/system/properties</strong></p>
+<p><img alt="" src="../images/media/image48.png" /></p>
+<p>Dev mode automatically picks up changes that you make to your
+application and allows you to run tests by pressing the
+<strong>enter/return</strong> key in the active command-line session.</p>
+<p><br/></p>
+</li>
+<li>
+<p>Run the integration test that is included in the application project.</p>
+<p><strong>Note:</strong> The test case simply creates a client and invokes the
+<a href="http://localhost:9080/sste/properties">http://localhost:9080/sste/properties</a> endpoint. The expected HTTP
+response code is 200, which indicates a successful http response
+from the system/properties service. The test case will fail if the
+response code is anything other than 200.</p>
+<p>a.  From the Terminal window that the <strong>mvn liberty:devc</strong> is
+    running, press the <strong>ENTER</strong> key to run the tests. You will see
+    that the test runs with no failures, as illustrated below.</p>
+<p><img alt="" src="../images/media/image49.png" /></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../images/media/image11.png?cropResize=100,100" /></td>
+<td align="left"><p><strong>IMPORTANT:</strong></p><p>Next, you will introduce a change to the system/properties endpoint, which will break the test.</p><p>In this lab, you will not go into detail on the test cases themselves because you will explore testing in greater detail in a subsequent lab when working with Liberty dev mode in the VS Code IDE.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Update the <strong>server.xml</strong> file to change the context root from <strong>/</strong> to <strong>/dev</strong></p>
+<p>a.  From a terminal window, navigate to the <strong>liberty config</strong>
+    folder of the application</p>
+<pre><code>cd /home/ibmdemo/Student/labs/devmode/demo-project/src/main/liberty/config
+</code></pre>
+<p>b.  Use the gedit editor to open the <strong>index.html</strong> file in edit mode</p>
+<pre><code>gedit server.xml
+</code></pre>
+<p>c.  Make the following minor change to the index.html page</p>
+<p><strong>Change the highlighted line:</strong></p>
+<p><img alt="" src="../images/media/image50.png" /></p>
+<p><strong>Updated to read:</strong> contextRoot=”/<strong>dev</strong>” /></p>
+<p><img alt="" src="../images/media/image51.png" /></p>
+<p>d.  <strong>Save</strong> the file and <strong>close</strong> the gedit editor.</p>
+<p><br/></p>
+</li>
+<li>
+<p>After you <strong>SAVE</strong> the file changes, Open Liberty automatically reloads its configuration. You can access the application at: <strong>http://localhost:9080/dev/system/properties</strong></p>
+<p>Notice that context root is now <strong>/dev</strong></p>
+<p><img alt="" src="../images/media/image52.png" /></p>
+<p><br/></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../images/media/image11.png?cropResize=100,100" /></td>
+<td align="left"><p><strong>IMPORTANT:</strong></p><p>We encountered situations where the container got mapped to Docker host port 9081 instead of 9080.</p><p><img alt="" src="../images/media/image53.png" /></p><p>This happens when the new container comes up before the old container ports have been freed. To get the container back to port 9080, devc or do a minor change to the server.xml..</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Rerun the integration test that is included in the application roject.</p>
+<p>a.  From the Terminal window that the <strong>mvn liberty:devc</strong> is
+    running, press the <strong>ENTER</strong> key to run the tests. You will see
+    that the test runs, but now FAILS because a 404 HTTP response
+    code was returned, using the original context root.</p>
+<p><img alt="" src="../images/media/image54.png" /></p>
+<p><strong>Note:</strong> For the test case to <strong>PASS</strong>, the test case itself would need to be updated to reflect invoking the system/properties service using the new /dev context root. This activity is beyond the scope of this lab. However, you will explore the tests in greater detail in a subsequent lab.</p>
+<p><br/></p>
+</li>
+</ol>
+<h2 id="lab-cleanup-and-completion">Lab cleanup and completion</h2>
+<ol>
+<li>
+<p><strong>Exit</strong> Liberty devc mode</p>
+<p>a.  When you are finished, <strong>exit</strong> dev mode by pressing <strong>CTRL+C</strong>
+    in the command-line session that the container was started from, or by typing q and then pressing the enter/return key.</p>
+<p><strong>Note:</strong> Either of these options stops and removes the container.</p>
+<p>b.  To check that the container was stopped, run the <strong>docker ps</strong>  command.</p>
+<pre><code>docker ps
+</code></pre>
+<p><img alt="" src="../images/media/image55.png" /></p>
+</li>
+</ol>
+<p><strong>Congratulations</strong>! You have successfully completed the lab “Getting
+Started with Liberty and Dev Mode.</p>
+<p>In this exercise, you learned how developers can use Liberty in “dev”
+mode for achieving efficient iterative develop, test, debug cycle when
+developing Java based applications / microservices.</p>
+<p>You explored:</p>
+<ul>
+<li>
+<p>Using Liberty dev mode (stand-alone) without an IDE</p>
+</li>
+<li>
+<p>Hot reloading of application code and configuration changes using
+    dev mode</p>
+</li>
+<li>
+<p>Working with Liberty dev mode in containers</p>
+</li>
+<li>
+<p>Running integrated unit/integration tests from Liberty dev mode</p>
+<p><strong>===== END OF LAB =====</strong></p>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../../../..';</script>
+    <script src="../../../../js/theme.js" defer></script>
+      <script src="../../../../search/main.js" defer></script>
+
+</body>
+</html>
