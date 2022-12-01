@@ -30,7 +30,7 @@ Need support? Contact **Kevin Postreich**, **Yi Tang**
     
     b.  **Purpose**: Select a `purpose` from the drop-down menu
 	
-	> **AVOID TROUBLE:** Selecting TEST only reserves an environemt for **4 hours**. If you need the evironemnt for up to two weeks, select a purpose other than Test.
+	> **AVOID TROUBLE:** Selecting TEST only reserves an environment for **4 hours**. If you need the evironment for up to two weeks, select a purpose other than Test.
 	
 	 ![](./images/env-purpose.png)
     
@@ -50,7 +50,7 @@ Need support? Contact **Kevin Postreich**, **Yi Tang**
 
     <br/>
 
-3.  Preferred Geography: Choose an IBM CLoud datacenter in the closest
+3.  Preferred Geography: Choose an IBM Cloud datacenter in the closest
     geography (US, EMEA, Asia Pacific)
 
     ![](./images/env-geo.png)
@@ -68,7 +68,7 @@ Need support? Contact **Kevin Postreich**, **Yi Tang**
 
     **Note:** The details of your environment reservation are displayed.
 
-6.  Then click the reservation page to access the reseration details.
+6.  Then click the reservation page to access the reservation details.
 
     ![](./images/reservation-image.png)
 	
@@ -77,7 +77,7 @@ Need support? Contact **Kevin Postreich**, **Yi Tang**
 7.  On the reservation details page, you will find the **Published Service** that is used to access the lab environment. 
 
 
-8.  Now open the specific lab guide you want to use, and follow the instructions for using the **Published Service** link to acces the lab environment and how to login to the VM. 
+8.  Now open the specific lab guide you want to use, and follow the instructions for using the **Published Service** link to access the lab environment and how to login to the VM. 
 
     <br>
 
